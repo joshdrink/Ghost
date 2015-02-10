@@ -18,10 +18,16 @@ html {
 @media screen and (min-width: 1025px) {
   /* line 15, ../scss/partials/_typography.scss */
   html {
+    font-size: 1.6vw;
+  }
+}
+@media screen and (min-width: 1281px) {
+  /* line 16, ../scss/partials/_typography.scss */
+  html {
     font-size: 1.3vw;
   }
 }
-/* line 61, ../scss/partials/_typography.scss */
+/* line 62, ../scss/partials/_typography.scss */
 h1,
 h2,
 h3,
@@ -47,7 +53,7 @@ dd {
   text-decoration: none;
 }
 
-/* line 90, ../scss/partials/_typography.scss */
+/* line 91, ../scss/partials/_typography.scss */
 .post h1,
 .post h1 a,
 .post h2,
@@ -57,32 +63,32 @@ dd {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
 }
-/* line 99, ../scss/partials/_typography.scss */
+/* line 100, ../scss/partials/_typography.scss */
 .post h1,
 .post h1 a {
   margin: 3vh 0;
 }
-/* line 104, ../scss/partials/_typography.scss */
+/* line 105, ../scss/partials/_typography.scss */
 .post h2 {
   font-size: 1.4rem;
   margin: 3vh 0;
 }
-/* line 109, ../scss/partials/_typography.scss */
+/* line 110, ../scss/partials/_typography.scss */
 .post h3 {
   font-size: 1rem;
   margin: 3vh 0;
 }
-/* line 114, ../scss/partials/_typography.scss */
+/* line 115, ../scss/partials/_typography.scss */
 .post h4 {
   font-size: 0.8rem;
   margin: 3vh 0;
 }
-/* line 119, ../scss/partials/_typography.scss */
+/* line 120, ../scss/partials/_typography.scss */
 .post h5 {
   font-size: 0.6rem;
   margin: 3vh 0;
 }
-/* line 125, ../scss/partials/_typography.scss */
+/* line 126, ../scss/partials/_typography.scss */
 .post .post-title,
 .post .post-title a {
   font-family: "Roboto", sans-serif;
@@ -90,14 +96,14 @@ dd {
   font-size: 1.6rem;
   margin: 0 0 2vh 0;
 }
-/* line 133, ../scss/partials/_typography.scss */
+/* line 134, ../scss/partials/_typography.scss */
 .post .post-meta {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: .8rem;
   font-weight: 900;
 }
-/* line 138, ../scss/partials/_typography.scss */
+/* line 139, ../scss/partials/_typography.scss */
 .post .post-meta time,
 .post .post-meta a {
   font-family: "Roboto", sans-serif;
@@ -105,36 +111,36 @@ dd {
   font-size: .8rem;
   font-weight: 900;
 }
-/* line 148, ../scss/partials/_typography.scss */
+/* line 149, ../scss/partials/_typography.scss */
 .post p {
   font-family: "minion-pro", sans-serif;
   font-weight: 400;
   margin: 3vh 0;
 }
-/* line 153, ../scss/partials/_typography.scss */
+/* line 154, ../scss/partials/_typography.scss */
 .post a {
   font-family: "minion-pro", sans-serif;
   font-weight: 400;
   color: red;
 }
-/* line 158, ../scss/partials/_typography.scss */
+/* line 159, ../scss/partials/_typography.scss */
 .post strong {
   font-family: "minion-pro", sans-serif;
   font-weight: 700;
   font-weight: 700;
 }
-/* line 163, ../scss/partials/_typography.scss */
+/* line 164, ../scss/partials/_typography.scss */
 .post ul,
 .post ul li,
 .post ol li {
   font-family: "minion-pro", sans-serif;
   font-weight: 400;
 }
-/* line 169, ../scss/partials/_typography.scss */
+/* line 170, ../scss/partials/_typography.scss */
 .post img {
   width: 100%;
 }
-/* line 174, ../scss/partials/_typography.scss */
+/* line 175, ../scss/partials/_typography.scss */
 .post pre {
   background: #e1e1e1;
   border: 1px solid #282828;
@@ -145,7 +151,7 @@ dd {
   white-space: pre-wrap;
   width: 100%;
 }
-/* line 185, ../scss/partials/_typography.scss */
+/* line 186, ../scss/partials/_typography.scss */
 .post code {
   background: #e1e1e1;
   display: inline-block;
@@ -153,7 +159,7 @@ dd {
   padding: 1.7vw;
   vertical-align: middle;
 }
-/* line 194, ../scss/partials/_typography.scss */
+/* line 195, ../scss/partials/_typography.scss */
 .post blockquote {
   border-left: 10px solid #e1e1e1;
   margin: 1em 0;
@@ -161,7 +167,7 @@ dd {
 }
 
 @media screen and (min-width: 801px) {
-  /* line 218, ../scss/partials/_typography.scss */
+  /* line 219, ../scss/partials/_typography.scss */
   .post code {
     padding: .3vw;
   }
