@@ -1,0 +1,127 @@
+// =============================================================================
+
+    // APP SCSS
+    // Property of joshdrink
+    // Authored by Josh Beveridge
+
+// =============================================================================
+
+// Custom Imports ==============================================================
+@import 'partials/palette';
+@import 'partials/typography';
+
+// Settings ====================================================================
+
+// Resets
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    background: $light-grey;
+    margin: 0;
+    padding: 0;
+}
+
+// Shadows (Top)
+$shadow-top-01: 0 -3px 3px rgba(0, 0, 0, .5);
+$shadow-top-02: 0 -5px 5px rgba(0, 0, 0, .5);
+$shadow-top-03: 0 -7px 7px rgba(0, 0, 0, .5);
+$shadow-top-04: 0 -9px 9px rgba(0, 0, 0, .5);
+$shadow-top-05: 0 -11px 11px rgba(0, 0, 0, .5);
+
+// Shadows (Right)
+$shadow-right-01: 3px 0 3px rgba(0, 0, 0, .5);
+$shadow-right-02: 5px 0 5px rgba(0, 0, 0, .5);
+$shadow-right-03: 7px 0 7px rgba(0, 0, 0, .5);
+$shadow-right-04: 9px 0 9px rgba(0, 0, 0, .5);
+$shadow-right-05: 11px 0 11px rgba(0, 0, 0, .5);
+
+// Shadows (Top)
+$shadow-bottom-01: 0 3px 3px rgba(0, 0, 0, .5);
+$shadow-bottom-02: 0 5px 5px rgba(0, 0, 0, .5);
+$shadow-bottom-03: 0 7px 7px rgba(0, 0, 0, .5);
+$shadow-bottom-04: 0 9px 9px rgba(0, 0, 0, .5);
+$shadow-bottom-05: 0 11px 11px rgba(0, 0, 0, .5);
+
+// Shadows (Left)
+$shadow-left-01: -3px 0 3px rgba(0, 0, 0, .5);
+$shadow-left-02: -5px 0 5px rgba(0, 0, 0, .5);
+$shadow-left-03: -7px 0 7px rgba(0, 0, 0, .5);
+$shadow-left-04: -9px 0 9px rgba(0, 0, 0, .5);
+$shadow-left-05: -11px 0 11px rgba(0, 0, 0, .5);
+
+// Displays
+.mobile-portrait {display: block;}
+// Tablet (Landscape)
+@media screen and (min-width:801px) {.mobile-portrait {display: none;}}
+
+.mobile-landscape {display: none;}
+// Tablet (Landscape)
+@media screen and (min-width:801px) {.mobile-landscape {display: block;}}
+
+// Body Style ==================================================================
+body {
+    margin: 3vh 0 0 0;
+}
+
+// Navigation ==================================================================
+@import 'partials/nav';
+
+// Post Loop ===================================================================
+.scene {
+    width: 100vw;
+}
+
+// Default Card Style ==========================================================
+.card {
+    background: $white;
+    box-shadow: $shadow-bottom-01;
+    display: block;
+    margin: 0 auto 3vh;
+    max-width: 45rem;
+    padding: 5vw;
+    width: 90%;
+
+    &:last-child {
+        margin: 0 auto 13vh;
+    }
+
+}
+
+// Media Queries ===============================================================
+
+// Phone (Landscape)
+@media screen and (min-width:541px) {}
+
+// Tablet (Portrait) & Lower
+@media screen and (max-width: 640px) {}
+
+// Tablet (Portrait)
+@media screen and (min-width:641px) {}
+
+// Tablet (Landscape)
+@media screen and (min-width:801px) {
+
+    .scene {
+        width: 80vw;
+    }
+
+    .card {
+        padding: 5rem;
+
+        &:last-child {
+            margin: 0 auto 3vh;
+        }
+
+    }
+
+}
+
+// Desktop
+@media screen and (min-width:1023px) {}
+
+// Desktop XL
+@media screen and (min-width:1281px) {}

@@ -1,0 +1,230 @@
+// =============================================================================
+
+    // NAV SCSS
+    // Property of joshdrink
+    // Authored by Josh Beveridge
+
+// =============================================================================
+
+// Navigation ==================================================================
+
+.navigation {
+    background-color: $black;
+    background-repeat: repeat;
+    box-shadow: $shadow-bottom-01;
+    height: 90vh;
+    position: fixed;
+    bottom: -80vh;
+    transition: bottom .5s ease .6s;
+    width: 100vw;
+    z-index: 10;
+
+    &.active {
+        bottom: 0;
+        transition: bottom .5s ease .6s;
+    }
+
+}
+
+.label-navigation {
+    color: $white;
+    display: block;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    top: 5vh;
+    left: 6vh;
+    text-transform: uppercase;
+    transform: translateY(-50%);
+    transition: opacity .3s ease;
+
+    &.active {
+        opacity: 1;
+        transition: opacity .3s ease 1.2s;
+    }
+
+}
+
+.wrapper-navigation-list {
+    max-width: 60vw;
+    position: absolute;
+    top: 50%;
+    left: 10vw;
+    transform: translateY(-50%);
+}
+
+.navigation-list {
+    display: block;
+    padding: 0 0 0 10vw;
+    position: relative;
+    vertical-align: top;
+
+    >dd {
+        margin: 0 0 2vh 0;
+        opacity: 0;
+        position: relative;
+        // left: 50%;
+        top: 50%;
+        transition: all .3s ease .4s;
+
+        a {
+            color: $white;
+            text-transform: uppercase;
+
+            &:hover {
+                // color: $accent;
+            }
+
+        }
+
+        &.active {
+            opacity: 1;
+            // left: 0;
+            top: 0;
+        }
+
+        a.active {
+            // color: $accent;
+        }
+
+    }
+
+}
+
+.navigation-list {
+
+    dd:nth-child(2).active {
+        transition: all .3s ease 1s;
+    }
+
+    dd:nth-child(3).active {
+        transition: all .3s ease 1.1s;
+    }
+
+    dd:nth-child(4).active {
+        transition: all .3s ease 1.2s;
+    }
+
+    dd:nth-child(5).active {
+        transition: all .3s ease 1.3s;
+    }
+
+}
+
+.navigation-button {
+    cursor: pointer;
+    height: 10vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 10;
+}
+
+.navigation-close {
+    color: $white;
+    cursor: pointer;
+    display: block;
+    opacity: 0;
+    position: absolute;
+    right: 10vh;
+    bottom: 10vh;
+    transition: all .3s ease;
+
+    &.active {
+        opacity: 1;
+        transition: all .3s ease 1.8s;
+    }
+
+}
+
+.navigation-close-exterior {
+    display: none;
+    cursor: pointer;
+    height: 10vh;
+    position: absolute;
+    top: -10vh;
+    width: 100vw;
+    z-index: 10;
+}
+
+// Media Queries ===============================================================
+
+// Phone (Landscape)
+@media screen and (min-width:541px) {}
+
+// Tablet (Portrait)
+@media screen and (min-width:641px) {}
+
+// Tablet (Landscape)
+@media screen and (min-width:801px) {
+
+    .navigation {
+        box-shadow: $shadow-bottom-01;
+        height: 100vh;
+        top: 0;
+        left: 80vw;
+        bottom: 0;
+        transition: box-shadow .3s ease, left .5s ease 1s;
+        width: 90vw;
+
+        &:hover {
+            box-shadow: $shadow-bottom-02;
+        }
+
+        &.active {
+            left: 10vw;
+            transition: left .5s ease;
+
+            &:hover {
+                box-shadow: $shadow-bottom-01;
+            }
+
+        }
+
+    }
+
+    .label-navigation {
+        display: block;
+        margin: 0;
+        opacity: 0;
+        padding: 0;
+        position: absolute;
+        top: auto;
+        left: 10vw;
+        right: auto;
+        bottom: 10vh;
+        transform: translateX(-50%);
+        transition: opacity .3s ease;
+
+        &.active {
+            opacity: 1;
+            transition: opacity .3s ease 1.2s;
+        }
+
+    }
+
+    .navigation-list {
+        display: inline-block;
+    }
+
+    .navigation-button {
+        height: 100vh;
+        width: 20vw;
+    }
+
+    .navigation-close-exterior {
+        height: 100vh;
+        top: 0;
+        left: -10vw;
+        width: 10vw;
+    }
+
+}
+
+// Desktop
+@media screen and (min-width:1025px) {}
+
+// Desktop XL
+@media screen and (min-width:1281px) {}

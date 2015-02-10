@@ -1,0 +1,230 @@
+// =============================================================================
+
+    // TYPOGRAPHY SCSS
+    // Property of joshdrink
+    // Authored by Josh Beveridge
+
+// =============================================================================
+
+// Relative Font Size ==========================================================
+
+// Body Font
+html {font-size: 5vw;}
+@media screen and (min-width:641px) {html {font-size: 3.2vw;}}
+@media screen and (min-width:801px) {html {font-size: 2vw;}}
+@media screen and (min-width:1025px) {html {font-size: 1.5vw;}}
+
+// Font Variables ==============================================================
+
+$font-sans: 'Roboto', sans-serif;
+
+@mixin font-sans-thin {
+    font-family: $font-sans;
+    font-weight: 100;
+}
+
+@mixin font-sans-light {
+    font-family: $font-sans;
+    font-weight: 300;
+}
+
+@mixin font-sans-reg {
+    font-family: $font-sans;
+    font-weight: 400;
+}
+
+@mixin font-sans-bold {
+    font-family: $font-sans;
+    font-weight: 700;
+}
+
+@mixin font-sans-black {
+    font-family: $font-sans;
+    font-weight: 900;
+}
+
+$font-serif: 'minion-pro',sans-serif;
+
+@mixin font-serif-reg {
+    font-family: $font-serif;
+    font-weight: 400;
+}
+
+@mixin font-serif-bold {
+    font-family: $font-serif;
+    font-weight: 700;
+}
+
+
+// Type Resets =================================================================
+
+h1,
+h2,
+h3,
+h4,
+h5,
+time,
+p,
+em,
+strong,
+span,
+a,
+ul,
+ol,
+li,
+dl,
+dt,
+dd {
+    @include font-sans-reg;
+    color: $black;
+    font-size: 1rem;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+// Post Content ================================================================
+
+.post {
+
+    // Headings
+    h1,
+    h1 a,
+    h2,
+    h3,
+    h4,
+    h5 {
+        @include font-sans-bold;
+    }
+
+    h1,
+    h1 a {
+        margin: 3vh 0;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+        margin: 3vh 0;
+    }
+
+    h3 {
+        font-size: 1rem;
+        margin: 3vh 0;
+    }
+
+    h4 {
+        font-size: 0.8rem;
+        margin: 3vh 0;
+    }
+
+    h5 {
+        font-size: 0.6rem;
+        margin: 3vh 0;
+    }
+
+    // Post Title
+    .post-title,
+    .post-title a {
+        @include font-sans-bold;
+        font-size: 1.6rem;
+        margin: 0 0 2vh 0;
+    }
+
+    // Post Meta
+    .post-meta {
+        @include font-sans-reg;
+        font-size: .8rem;
+        font-weight: 900;
+
+        time,
+        a {
+            @include font-sans-reg;
+            font-size: .8rem;
+            font-weight: 900;
+        }
+
+    }
+
+    // Copy
+    p {
+        @include font-serif-reg;
+        margin: 3vh 0;
+    }
+
+    a {
+        @include font-serif-reg;
+        color: red;
+    }
+
+    strong {
+        @include font-serif-bold;
+        font-weight: 700;
+    }
+
+    ul,
+    ul li,
+    ol li {
+        @include font-serif-reg;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    // Code
+    pre {
+        background: $light-grey;
+        border: 1px solid $black;
+        display: block;
+        font-size: .7rem;
+        line-height: 1.3rem;
+        padding: 2.5vw;
+        white-space: pre-wrap;
+        width: 100%;
+    }
+
+    code {
+        background: $light-grey;
+        display: inline-block;
+        font-size: .7rem;
+        padding: 1.7vw;
+        vertical-align: middle;
+    }
+
+    // BlockQuotes
+    blockquote {
+        border-left: 10px solid $light-grey;
+        margin: 1em 0;
+        padding: 0 0 0 5vh;
+    }
+
+}
+
+// Media Queries ===============================================================
+
+// Phone (Landscape)
+@media screen and (min-width:541px) {}
+
+// Tablet (Portrait) & Lower
+@media screen and (max-width: 640px) {}
+
+// Tablet (Portrait)
+@media screen and (min-width:641px) {}
+
+// Tablet (Landscape)
+@media screen and (min-width:801px) {
+
+    .post {
+
+        code {
+            padding: .3vw;
+        }
+
+    }
+
+}
+
+// Desktop
+@media screen and (min-width:1023px) {}
+
+// Desktop XL
+@media screen and (min-width:1281px) {}
