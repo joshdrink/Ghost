@@ -18,7 +18,7 @@ html {
 @media screen and (min-width: 1025px) {
   /* line 15, ../scss/partials/_typography.scss */
   html {
-    font-size: 1.5vw;
+    font-size: 1.3vw;
   }
 }
 /* line 61, ../scss/partials/_typography.scss */
@@ -174,7 +174,7 @@ dd {
 /* line 21, ../scss/app.scss */
 html,
 body {
-  background: #e1e1e1;
+  background: #fafafa;
   margin: 0;
   padding: 0;
 }
@@ -428,7 +428,6 @@ body {
 /* line 79, ../scss/app.scss */
 .card {
   background: #fafafa;
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5);
   display: block;
   margin: 0 auto 3vh;
   max-width: 45rem;

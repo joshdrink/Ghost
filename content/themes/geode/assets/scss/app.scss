@@ -20,7 +20,7 @@
 
 html,
 body {
-    background: $light-grey;
+    background: $white;
     margin: 0;
     padding: 0;
 }
@@ -78,7 +78,7 @@ body {
 // Default Card Style ==========================================================
 .card {
     background: $white;
-    box-shadow: $shadow-bottom-01;
+    // box-shadow: $shadow-bottom-01;
     display: block;
     margin: 0 auto 3vh;
     max-width: 45rem;
