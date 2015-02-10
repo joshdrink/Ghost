@@ -20,7 +20,7 @@
 
 html,
 body {
-    background: $white;
+    background: $light-grey;
     margin: 0;
     padding: 0;
 }
@@ -62,33 +62,45 @@ $shadow-left-05: -11px 0 11px rgba(0, 0, 0, .5);
 // Tablet (Landscape)
 @media screen and (min-width:801px) {.mobile-landscape {display: block;}}
 
-// Body Style ==================================================================
-body {
-    margin: 3vh 0 0 0;
-}
-
 // Navigation ==================================================================
 @import 'partials/nav';
 
 // Post Loop ===================================================================
 .scene {
     width: 100vw;
+
+    &.single-post {
+        background: $white;
+        min-height: 100vh;
+    }
+
 }
 
 // Default Card Style ==========================================================
 .card {
     background: $white;
-    // box-shadow: $shadow-bottom-01;
+    box-shadow: $shadow-bottom-01;
     display: block;
-    margin: 0 auto 3vh;
+    margin: 3vh auto 3vh;
     max-width: 45rem;
     padding: 5vw;
+    position: relative;
     width: 90%;
 
     &:last-child {
-        margin: 0 auto 13vh;
+        margin: 3vh auto 13vh;
     }
 
+}
+
+.article {
+    background: $white;
+    // box-shadow: $shadow-bottom-01;
+    display: block;
+    margin: 0 auto 10vh;
+    max-width: 45rem;
+    padding: 5vw;
+    width: 90%;
 }
 
 // Media Queries ===============================================================
@@ -112,10 +124,22 @@ body {
     .card {
         padding: 5rem;
 
-        &:last-child {
-            margin: 0 auto 3vh;
+        &:first-of-type {
+            top: 3vh;
         }
 
+        &:nth-of-type(2) {
+            margin: 6vh auto 3vh;
+        }
+
+        &:last-child {
+            margin: 3vh auto 6vh;
+        }
+
+    }
+
+    .article {
+        margin: 0 auto;
     }
 
 }

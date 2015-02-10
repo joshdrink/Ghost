@@ -174,7 +174,7 @@ dd {
 /* line 21, ../scss/app.scss */
 html,
 body {
-  background: #fafafa;
+  background: #e1e1e1;
   margin: 0;
   padding: 0;
 }
@@ -201,11 +201,6 @@ body {
     display: block;
   }
 }
-/* line 66, ../scss/app.scss */
-body {
-  margin: 3vh 0 0 0;
-}
-
 /* line 11, ../scss/partials/_nav.scss */
 .navigation {
   background-color: #282828;
@@ -420,37 +415,67 @@ body {
     width: 10vw;
   }
 }
-/* line 74, ../scss/app.scss */
+/* line 69, ../scss/app.scss */
 .scene {
   width: 100vw;
 }
+/* line 72, ../scss/app.scss */
+.scene.single-post {
+  background: #fafafa;
+  min-height: 100vh;
+}
 
-/* line 79, ../scss/app.scss */
+/* line 80, ../scss/app.scss */
 .card {
   background: #fafafa;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5);
   display: block;
-  margin: 0 auto 3vh;
+  margin: 3vh auto 3vh;
+  max-width: 45rem;
+  padding: 5vw;
+  position: relative;
+  width: 90%;
+}
+/* line 90, ../scss/app.scss */
+.card:last-child {
+  margin: 3vh auto 13vh;
+}
+
+/* line 96, ../scss/app.scss */
+.article {
+  background: #fafafa;
+  display: block;
+  margin: 0 auto 10vh;
   max-width: 45rem;
   padding: 5vw;
   width: 90%;
 }
-/* line 88, ../scss/app.scss */
-.card:last-child {
-  margin: 0 auto 13vh;
-}
 
 @media screen and (min-width: 801px) {
-  /* line 108, ../scss/app.scss */
+  /* line 120, ../scss/app.scss */
   .scene {
     width: 80vw;
   }
 
-  /* line 112, ../scss/app.scss */
+  /* line 124, ../scss/app.scss */
   .card {
     padding: 5rem;
   }
-  /* line 115, ../scss/app.scss */
+  /* line 127, ../scss/app.scss */
+  .card:first-of-type {
+    top: 3vh;
+  }
+  /* line 131, ../scss/app.scss */
+  .card:nth-of-type(2) {
+    margin: 6vh auto 3vh;
+  }
+  /* line 135, ../scss/app.scss */
   .card:last-child {
-    margin: 0 auto 3vh;
+    margin: 3vh auto 6vh;
+  }
+
+  /* line 141, ../scss/app.scss */
+  .article {
+    margin: 0 auto;
   }
 }
