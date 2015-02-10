@@ -161,16 +161,16 @@
 @media screen and (min-width:801px) {
 
     .navigation {
-        box-shadow: $shadow-bottom-01;
+        box-shadow: $shadow-left-01;
         height: 100vh;
         top: 0;
-        left: 80vw;
+        left: 90vw;
         bottom: 0;
         transition: box-shadow .3s ease, left .5s ease 1s;
         width: 90vw;
 
         &:hover {
-            box-shadow: $shadow-bottom-02;
+            box-shadow: $shadow-left-02;
         }
 
         &.active {
@@ -178,7 +178,7 @@
             transition: left .5s ease;
 
             &:hover {
-                box-shadow: $shadow-bottom-01;
+                box-shadow: $shadow-left-01;
             }
 
         }
@@ -192,10 +192,10 @@
         padding: 0;
         position: absolute;
         top: auto;
-        left: 10vw;
+        left: 5vw;
         right: auto;
-        bottom: 10vh;
-        transform: translateX(-50%);
+        bottom: 5rem;
+        transform: translateX(-50%) rotate(-90deg);
         transition: opacity .3s ease;
 
         &.active {
@@ -211,7 +211,7 @@
 
     .navigation-button {
         height: 100vh;
-        width: 20vw;
+        width: 10vw;
     }
 
     .navigation-close-exterior {

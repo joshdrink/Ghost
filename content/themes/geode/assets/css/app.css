@@ -205,7 +205,7 @@ body {
 .navigation {
   background-color: #282828;
   background-repeat: repeat;
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
   height: 90vh;
   position: fixed;
   bottom: -80vh;
@@ -348,10 +348,10 @@ body {
 @media screen and (min-width: 801px) {
   /* line 163, ../scss/partials/_nav.scss */
   .navigation {
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: -3px 0 3px rgba(0, 0, 0, 0.25);
     height: 100vh;
     top: 0;
-    left: 80vw;
+    left: 90vw;
     bottom: 0;
     -webkit-transition: box-shadow .3s ease, left .5s ease 1s;
             transition: box-shadow .3s ease, left .5s ease 1s;
@@ -359,7 +359,7 @@ body {
   }
   /* line 172, ../scss/partials/_nav.scss */
   .navigation:hover {
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
   }
   /* line 176, ../scss/partials/_nav.scss */
   .navigation.active {
@@ -369,7 +369,7 @@ body {
   }
   /* line 180, ../scss/partials/_nav.scss */
   .navigation.active:hover {
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: -3px 0 3px rgba(0, 0, 0, 0.25);
   }
 
   /* line 188, ../scss/partials/_nav.scss */
@@ -380,12 +380,12 @@ body {
     padding: 0;
     position: absolute;
     top: auto;
-    left: 10vw;
+    left: 5vw;
     right: auto;
-    bottom: 10vh;
-    -webkit-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-            transform: translateX(-50%);
+    bottom: 5rem;
+    -webkit-transform: translateX(-50%) rotate(-90deg);
+        -ms-transform: translateX(-50%) rotate(-90deg);
+            transform: translateX(-50%) rotate(-90deg);
     -webkit-transition: opacity .3s ease;
             transition: opacity .3s ease;
   }
@@ -404,7 +404,7 @@ body {
   /* line 212, ../scss/partials/_nav.scss */
   .navigation-button {
     height: 100vh;
-    width: 20vw;
+    width: 10vw;
   }
 
   /* line 217, ../scss/partials/_nav.scss */
@@ -428,7 +428,7 @@ body {
 /* line 80, ../scss/app.scss */
 .card {
   background: #fafafa;
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
   display: block;
   margin: 3vh auto 3vh;
   max-width: 45rem;
@@ -454,7 +454,7 @@ body {
 @media screen and (min-width: 801px) {
   /* line 120, ../scss/app.scss */
   .scene {
-    width: 80vw;
+    width: 90vw;
   }
 
   /* line 124, ../scss/app.scss */
@@ -466,15 +466,19 @@ body {
     top: 3vh;
   }
   /* line 131, ../scss/app.scss */
-  .card:nth-of-type(2) {
-    margin: 6vh auto 3vh;
-  }
-  /* line 135, ../scss/app.scss */
   .card:last-child {
     margin: 3vh auto 6vh;
   }
+  /* line 135, ../scss/app.scss */
+  .card:nth-of-type(2) {
+    margin: 6vh auto 3vh;
+  }
+  /* line 138, ../scss/app.scss */
+  .card:nth-of-type(2):last-child {
+    margin: 6vh auto 6vh;
+  }
 
-  /* line 141, ../scss/app.scss */
+  /* line 146, ../scss/app.scss */
   .article {
     margin: 0 auto;
   }

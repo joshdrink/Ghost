@@ -26,32 +26,32 @@ body {
 }
 
 // Shadows (Top)
-$shadow-top-01: 0 -3px 3px rgba(0, 0, 0, .5);
-$shadow-top-02: 0 -5px 5px rgba(0, 0, 0, .5);
-$shadow-top-03: 0 -7px 7px rgba(0, 0, 0, .5);
-$shadow-top-04: 0 -9px 9px rgba(0, 0, 0, .5);
-$shadow-top-05: 0 -11px 11px rgba(0, 0, 0, .5);
+$shadow-top-01: 0 -3px 3px rgba(0, 0, 0, .25);
+$shadow-top-02: 0 -5px 5px rgba(0, 0, 0, .25);
+$shadow-top-03: 0 -7px 7px rgba(0, 0, 0, .25);
+$shadow-top-04: 0 -9px 9px rgba(0, 0, 0, .25);
+$shadow-top-05: 0 -11px 11px rgba(0, 0, 0, .25);
 
 // Shadows (Right)
-$shadow-right-01: 3px 0 3px rgba(0, 0, 0, .5);
-$shadow-right-02: 5px 0 5px rgba(0, 0, 0, .5);
-$shadow-right-03: 7px 0 7px rgba(0, 0, 0, .5);
-$shadow-right-04: 9px 0 9px rgba(0, 0, 0, .5);
-$shadow-right-05: 11px 0 11px rgba(0, 0, 0, .5);
+$shadow-right-01: 3px 0 3px rgba(0, 0, 0, .25);
+$shadow-right-02: 5px 0 5px rgba(0, 0, 0, .25);
+$shadow-right-03: 7px 0 7px rgba(0, 0, 0, .25);
+$shadow-right-04: 9px 0 9px rgba(0, 0, 0, .25);
+$shadow-right-05: 11px 0 11px rgba(0, 0, 0, .25);
 
 // Shadows (Top)
-$shadow-bottom-01: 0 3px 3px rgba(0, 0, 0, .5);
-$shadow-bottom-02: 0 5px 5px rgba(0, 0, 0, .5);
-$shadow-bottom-03: 0 7px 7px rgba(0, 0, 0, .5);
-$shadow-bottom-04: 0 9px 9px rgba(0, 0, 0, .5);
-$shadow-bottom-05: 0 11px 11px rgba(0, 0, 0, .5);
+$shadow-bottom-01: 0 3px 3px rgba(0, 0, 0, .25);
+$shadow-bottom-02: 0 5px 5px rgba(0, 0, 0, .25);
+$shadow-bottom-03: 0 7px 7px rgba(0, 0, 0, .25);
+$shadow-bottom-04: 0 9px 9px rgba(0, 0, 0, .25);
+$shadow-bottom-05: 0 11px 11px rgba(0, 0, 0, .25);
 
 // Shadows (Left)
-$shadow-left-01: -3px 0 3px rgba(0, 0, 0, .5);
-$shadow-left-02: -5px 0 5px rgba(0, 0, 0, .5);
-$shadow-left-03: -7px 0 7px rgba(0, 0, 0, .5);
-$shadow-left-04: -9px 0 9px rgba(0, 0, 0, .5);
-$shadow-left-05: -11px 0 11px rgba(0, 0, 0, .5);
+$shadow-left-01: -3px 0 3px rgba(0, 0, 0, .25);
+$shadow-left-02: -5px 0 5px rgba(0, 0, 0, .25);
+$shadow-left-03: -7px 0 7px rgba(0, 0, 0, .25);
+$shadow-left-04: -9px 0 9px rgba(0, 0, 0, .25);
+$shadow-left-05: -11px 0 11px rgba(0, 0, 0, .25);
 
 // Displays
 .mobile-portrait {display: block;}
@@ -118,7 +118,7 @@ $shadow-left-05: -11px 0 11px rgba(0, 0, 0, .5);
 @media screen and (min-width:801px) {
 
     .scene {
-        width: 80vw;
+        width: 90vw;
     }
 
     .card {
@@ -128,12 +128,17 @@ $shadow-left-05: -11px 0 11px rgba(0, 0, 0, .5);
             top: 3vh;
         }
 
-        &:nth-of-type(2) {
-            margin: 6vh auto 3vh;
-        }
-
         &:last-child {
             margin: 3vh auto 6vh;
+        }
+
+        &:nth-of-type(2) {
+            margin: 6vh auto 3vh;
+
+            &:last-child {
+                margin: 6vh auto 6vh;
+            }
+
         }
 
     }
