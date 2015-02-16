@@ -18,7 +18,7 @@ html {
 @media screen and (min-width: 1025px) {
   /* line 15, ../scss/partials/_typography.scss */
   html {
-    font-size: 1.6vw;
+    font-size: 1.7vw;
   }
 }
 @media screen and (min-width: 1281px) {
@@ -165,7 +165,13 @@ dd {
   white-space: pre-wrap;
   width: 100%;
 }
-/* line 206, ../scss/partials/_typography.scss */
+/* line 205, ../scss/partials/_typography.scss */
+.post pre > code {
+  padding: 0;
+  width: 100%;
+  word-wrap: break-word;
+}
+/* line 213, ../scss/partials/_typography.scss */
 .post code {
   background: #e1e1e1;
   display: inline-block;
@@ -173,7 +179,7 @@ dd {
   padding: 1.7vw;
   vertical-align: middle;
 }
-/* line 215, ../scss/partials/_typography.scss */
+/* line 222, ../scss/partials/_typography.scss */
 .post blockquote {
   border-left: 10px solid #e1e1e1;
   margin: 1em 0;
@@ -181,7 +187,7 @@ dd {
 }
 
 @media screen and (min-width: 801px) {
-  /* line 239, ../scss/partials/_typography.scss */
+  /* line 246, ../scss/partials/_typography.scss */
   .post code {
     padding: .3vw;
   }
@@ -451,7 +457,7 @@ body {
   border-bottom: 1px solid #e1e1e1;
   display: block;
   margin: 1rem auto;
-  max-width: 45rem;
+  max-width: 40rem;
   padding: 1rem;
   -webkit-transition: box-shadow .3s ease, border .3s ease .3s;
           transition: box-shadow .3s ease, border .3s ease .3s;
@@ -487,7 +493,7 @@ body {
   background: #fafafa;
   display: block;
   margin: 1rem auto 15vh;
-  max-width: 45rem;
+  max-width: 40rem;
   padding: 1rem;
   width: 90%;
 }

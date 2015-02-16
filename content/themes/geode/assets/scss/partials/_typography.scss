@@ -12,7 +12,7 @@
 html {font-size: 5vw;}
 @media screen and (min-width:641px) {html {font-size: 3.2vw;}}
 @media screen and (min-width:801px) {html {font-size: 2vw;}}
-@media screen and (min-width:1025px) {html {font-size: 1.6vw;}}
+@media screen and (min-width:1025px) {html {font-size: 1.7vw;}}
 @media screen and (min-width:1281px) {html {font-size: 1.3vw;}}
 
 // Font Variables ==============================================================
@@ -201,6 +201,13 @@ dd {
         padding: 2.5vw;
         white-space: pre-wrap;
         width: 100%;
+
+        >code {
+            padding: 0;
+            width: 100%;
+            word-wrap: break-word;
+        }
+
     }
 
     code {
