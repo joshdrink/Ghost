@@ -65,6 +65,46 @@ $shadow-left-05: -11px 0 11px rgba(0, 0, 0, .25);
 // Navigation ==================================================================
 @import 'partials/nav';
 
+// Geode Icon ==================================================================
+.icon-home {
+    display: none;
+    position: fixed;
+    left: 10vw;
+    transform: translateX(-50%);
+
+    >img {
+        width: 16vw;
+    }
+
+    .icon-grey {
+        opacity: 1;
+        position: relative;
+        transition: opacity .3s ease;
+    }
+
+    .icon-black {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity .3s ease;
+
+    }
+
+    &:hover {
+
+        .icon-grey {
+            opacity: 0;
+        }
+
+        .icon-black {
+            opacity: 1;
+        }
+
+    }
+
+}
+
 // Post Loop ===================================================================
 .scene {
     width: 100vw;
@@ -150,24 +190,28 @@ $shadow-left-05: -11px 0 11px rgba(0, 0, 0, .25);
         width: 90vw;
     }
 
+    .icon-home {
+        display: block;
+    }
+
     .loop-article {
-        margin: 1rem auto;
+        margin: 1rem 20vw;
         padding: 1.5rem 0;
 
         &:first-of-type {
-            margin: 3rem auto 1.5rem;
+            margin: 3rem 20vw 1.5rem;
 
             &:not(:last-of-type) {
-                margin: 3rem auto 1rem;
+                margin: 3rem 20vw 1rem;
             }
 
         }
 
         &:last-of-type {
-            margin: 1.5rem auto 1.5rem;
+            margin: 3rem 20vw 3rem;
 
             &:not(:first-of-type) {
-                margin: 1rem auto 3rem;
+                margin: 1rem 20vw 3rem;
             }
 
         }
@@ -175,7 +219,7 @@ $shadow-left-05: -11px 0 11px rgba(0, 0, 0, .25);
     }
 
     .article {
-        margin: 3rem auto;
+        margin: 3rem 20vw;
         padding: 1.5rem 0;
     }
 

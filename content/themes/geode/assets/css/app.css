@@ -124,7 +124,7 @@ dd {
 .post a {
   font-family: "minion-pro", serif;
   font-weight: 400;
-  color: red;
+  color: #87d300;
 }
 /* line 169, ../scss/partials/_typography.scss */
 .post strong {
@@ -442,16 +442,54 @@ body {
   }
 }
 /* line 69, ../scss/app.scss */
+.icon-home {
+  display: none;
+  position: fixed;
+  left: 10vw;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+/* line 75, ../scss/app.scss */
+.icon-home > img {
+  width: 16vw;
+}
+/* line 79, ../scss/app.scss */
+.icon-home .icon-grey {
+  opacity: 1;
+  position: relative;
+  -webkit-transition: opacity .3s ease;
+          transition: opacity .3s ease;
+}
+/* line 85, ../scss/app.scss */
+.icon-home .icon-black {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: opacity .3s ease;
+          transition: opacity .3s ease;
+}
+/* line 96, ../scss/app.scss */
+.icon-home:hover .icon-grey {
+  opacity: 0;
+}
+/* line 100, ../scss/app.scss */
+.icon-home:hover .icon-black {
+  opacity: 1;
+}
+
+/* line 109, ../scss/app.scss */
 .scene {
   width: 100vw;
 }
-/* line 72, ../scss/app.scss */
+/* line 112, ../scss/app.scss */
 .scene.single-post {
   background: #fafafa;
   min-height: 100vh;
 }
 
-/* line 81, ../scss/app.scss */
+/* line 121, ../scss/app.scss */
 .loop-article {
   background: #fafafa;
   border-bottom: 1px solid #e1e1e1;
@@ -463,30 +501,30 @@ body {
           transition: box-shadow .3s ease, border .3s ease .3s;
   width: 85%;
 }
-/* line 93, ../scss/app.scss */
+/* line 133, ../scss/app.scss */
 .loop-article:first-of-type {
   margin: 1rem auto;
 }
-/* line 97, ../scss/app.scss */
+/* line 137, ../scss/app.scss */
 .loop-article:first-of-type:not(:last-of-type) {
   margin: 1rem auto 1rem;
 }
-/* line 104, ../scss/app.scss */
+/* line 144, ../scss/app.scss */
 .loop-article:last-of-type {
   border-bottom: none;
   margin: 1rem auto;
 }
-/* line 109, ../scss/app.scss */
+/* line 149, ../scss/app.scss */
 .loop-article:last-of-type:not(:first-of-type) {
   margin: 1rem auto 15vh;
 }
-/* line 116, ../scss/app.scss */
+/* line 156, ../scss/app.scss */
 .loop-article:hover {
   -webkit-transition: box-shadow .3s ease, border .1s ease;
           transition: box-shadow .3s ease, border .1s ease;
 }
 
-/* line 124, ../scss/app.scss */
+/* line 164, ../scss/app.scss */
 .article {
   background: #fafafa;
   display: block;
@@ -497,36 +535,41 @@ body {
 }
 
 @media screen and (min-width: 801px) {
-  /* line 149, ../scss/app.scss */
+  /* line 189, ../scss/app.scss */
   .scene {
     width: 90vw;
   }
 
-  /* line 153, ../scss/app.scss */
-  .loop-article {
-    margin: 1rem auto;
-    padding: 1.5rem 0;
-  }
-  /* line 157, ../scss/app.scss */
-  .loop-article:first-of-type {
-    margin: 3rem auto 1.5rem;
-  }
-  /* line 160, ../scss/app.scss */
-  .loop-article:first-of-type:not(:last-of-type) {
-    margin: 3rem auto 1rem;
-  }
-  /* line 166, ../scss/app.scss */
-  .loop-article:last-of-type {
-    margin: 1.5rem auto 1.5rem;
-  }
-  /* line 169, ../scss/app.scss */
-  .loop-article:last-of-type:not(:first-of-type) {
-    margin: 1rem auto 3rem;
+  /* line 193, ../scss/app.scss */
+  .icon-home {
+    display: block;
   }
 
-  /* line 177, ../scss/app.scss */
+  /* line 197, ../scss/app.scss */
+  .loop-article {
+    margin: 1rem 20vw;
+    padding: 1.5rem 0;
+  }
+  /* line 201, ../scss/app.scss */
+  .loop-article:first-of-type {
+    margin: 3rem 20vw 1.5rem;
+  }
+  /* line 204, ../scss/app.scss */
+  .loop-article:first-of-type:not(:last-of-type) {
+    margin: 3rem 20vw 1rem;
+  }
+  /* line 210, ../scss/app.scss */
+  .loop-article:last-of-type {
+    margin: 3rem 20vw 3rem;
+  }
+  /* line 213, ../scss/app.scss */
+  .loop-article:last-of-type:not(:first-of-type) {
+    margin: 1rem 20vw 3rem;
+  }
+
+  /* line 221, ../scss/app.scss */
   .article {
-    margin: 3rem auto;
+    margin: 3rem 20vw;
     padding: 1.5rem 0;
   }
 }

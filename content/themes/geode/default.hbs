@@ -43,6 +43,15 @@
 
 <body class="{{body_class}}">
 
+    <!-- Navigation ============================================================ -->
+    {{> "nav"}}
+
+    <!-- Home Icon ============================================================= -->
+    <a href='http://www.joshdr.ink' class='icon-home'>
+        <img src='{{asset "img/icon_geode_grey.png"}}' class='icon-grey'>
+        <img src='{{asset "img/icon_geode_black.png"}}' class='icon-black'>
+    </a>
+
     {{{body}}}
 
     {{! Ghost outputs important scripts and data with this tag }}
