@@ -457,11 +457,11 @@ body {
   border-bottom: 1px solid #e1e1e1;
   display: block;
   margin: 1rem auto;
-  max-width: 40rem;
-  padding: 1rem;
+  max-width: 30rem;
+  padding: 1rem 0;
   -webkit-transition: box-shadow .3s ease, border .3s ease .3s;
           transition: box-shadow .3s ease, border .3s ease .3s;
-  width: 90%;
+  width: 85%;
 }
 /* line 93, ../scss/app.scss */
 .loop-article:first-of-type {
@@ -482,8 +482,6 @@ body {
 }
 /* line 116, ../scss/app.scss */
 .loop-article:hover {
-  border-bottom: 1px solid #fafafa;
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
   -webkit-transition: box-shadow .3s ease, border .1s ease;
           transition: box-shadow .3s ease, border .1s ease;
 }
@@ -493,9 +491,9 @@ body {
   background: #fafafa;
   display: block;
   margin: 1rem auto 15vh;
-  max-width: 40rem;
-  padding: 1rem;
-  width: 90%;
+  max-width: 30rem;
+  padding: 1rem 0;
+  width: 85%;
 }
 
 @media screen and (min-width: 801px) {
@@ -506,29 +504,29 @@ body {
 
   /* line 153, ../scss/app.scss */
   .loop-article {
-    margin: 1.5rem auto;
-    padding: 3rem;
+    margin: 1rem auto;
+    padding: 1.5rem 0;
   }
   /* line 157, ../scss/app.scss */
   .loop-article:first-of-type {
-    margin: 3rem auto 3rem;
+    margin: 3rem auto 1.5rem;
   }
   /* line 160, ../scss/app.scss */
   .loop-article:first-of-type:not(:last-of-type) {
-    margin: 3rem auto 1.5rem;
+    margin: 3rem auto 1rem;
   }
   /* line 166, ../scss/app.scss */
   .loop-article:last-of-type {
-    margin: 3rem auto 3rem;
+    margin: 1.5rem auto 1.5rem;
   }
   /* line 169, ../scss/app.scss */
   .loop-article:last-of-type:not(:first-of-type) {
-    margin: 1.5rem auto 3rem;
+    margin: 1rem auto 3rem;
   }
 
   /* line 177, ../scss/app.scss */
   .article {
     margin: 3rem auto;
-    padding: 3rem;
+    padding: 1.5rem 0;
   }
 }
