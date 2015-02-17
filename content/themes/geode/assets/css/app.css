@@ -113,48 +113,56 @@ dd {
   font-size: .8rem;
   font-weight: 900;
 }
-/* line 158, ../scss/partials/_typography.scss */
+/* line 155, ../scss/partials/_typography.scss */
+.post .post-meta span {
+  font-family: "minion-pro", serif;
+  font-weight: 700;
+  color: #87d300;
+  font-size: .8rem;
+  font-weight: 900;
+}
+/* line 165, ../scss/partials/_typography.scss */
 .post p {
   font-family: "minion-pro", serif;
   font-weight: 400;
   color: #505050;
   margin: 1rem 0;
 }
-/* line 164, ../scss/partials/_typography.scss */
+/* line 171, ../scss/partials/_typography.scss */
 .post a {
   font-family: "minion-pro", serif;
   font-weight: 400;
   color: #87d300;
 }
-/* line 169, ../scss/partials/_typography.scss */
+/* line 176, ../scss/partials/_typography.scss */
 .post strong {
   font-family: "minion-pro", serif;
   font-weight: 700;
   font-weight: 700;
 }
-/* line 174, ../scss/partials/_typography.scss */
+/* line 181, ../scss/partials/_typography.scss */
 .post em {
   font-family: "minion-pro", serif;
   font-weight: 400;
   text-transform: italic;
 }
-/* line 179, ../scss/partials/_typography.scss */
+/* line 186, ../scss/partials/_typography.scss */
 .post ul,
 .post ul li,
 .post ol li {
   font-family: "minion-pro", serif;
   font-weight: 400;
 }
-/* line 185, ../scss/partials/_typography.scss */
+/* line 192, ../scss/partials/_typography.scss */
 .post img {
   width: 100%;
 }
-/* line 189, ../scss/partials/_typography.scss */
+/* line 196, ../scss/partials/_typography.scss */
 .post hr {
   border: none;
   border-bottom: 1px solid #e1e1e1;
 }
-/* line 195, ../scss/partials/_typography.scss */
+/* line 202, ../scss/partials/_typography.scss */
 .post pre {
   background: #e1e1e1;
   border: 1px solid #282828;
@@ -165,13 +173,13 @@ dd {
   white-space: pre-wrap;
   width: 100%;
 }
-/* line 205, ../scss/partials/_typography.scss */
+/* line 212, ../scss/partials/_typography.scss */
 .post pre > code {
   padding: 0;
   width: 100%;
   word-wrap: break-word;
 }
-/* line 213, ../scss/partials/_typography.scss */
+/* line 220, ../scss/partials/_typography.scss */
 .post code {
   background: #e1e1e1;
   display: inline-block;
@@ -179,7 +187,7 @@ dd {
   padding: 1.7vw;
   vertical-align: middle;
 }
-/* line 222, ../scss/partials/_typography.scss */
+/* line 229, ../scss/partials/_typography.scss */
 .post blockquote {
   border-left: 10px solid #e1e1e1;
   margin: 1em 0;
@@ -187,7 +195,7 @@ dd {
 }
 
 @media screen and (min-width: 801px) {
-  /* line 246, ../scss/partials/_typography.scss */
+  /* line 253, ../scss/partials/_typography.scss */
   .post code {
     padding: .3vw;
   }

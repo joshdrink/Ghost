@@ -152,6 +152,13 @@ dd {
             font-weight: 900;
         }
 
+        span {
+            @include font-serif-bold;
+            color: $green;
+            font-size: .8rem;
+            font-weight: 900;
+        }
+
     }
 
     // Copy
