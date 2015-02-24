@@ -88,6 +88,7 @@ dd {
     font-size: 1rem;
     font-weight: 300;
     text-decoration: none;
+    -webkit-font-smoothing: antialiased;
 }
 
 // Post Content ================================================================
@@ -154,7 +155,7 @@ dd {
 
         span {
             @include font-serif-bold;
-            color: $green;
+            color: $blue;
             font-size: .8rem;
             font-weight: 900;
         }
@@ -170,7 +171,7 @@ dd {
 
     a {
         @include font-serif-reg;
-        color: $green;
+        color: $blue;
     }
 
     strong {
