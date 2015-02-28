@@ -69,45 +69,47 @@ dd {
 .post h1,
 .post h1 a {
   margin: 3vh 0;
+  line-height: 1;
 }
-/* line 119, ../scss/partials/_typography.scss */
+/* line 120, ../scss/partials/_typography.scss */
 .post h2 {
   font-size: 1.8rem;
   margin: 2rem 0 0;
 }
-/* line 124, ../scss/partials/_typography.scss */
+/* line 125, ../scss/partials/_typography.scss */
 .post h3 {
   color: #505050;
   font-size: 1.5rem;
   margin: 2rem 0 0;
 }
-/* line 130, ../scss/partials/_typography.scss */
+/* line 131, ../scss/partials/_typography.scss */
 .post h4 {
   font-size: 0.8rem;
   margin: 3vh 0;
 }
-/* line 135, ../scss/partials/_typography.scss */
+/* line 136, ../scss/partials/_typography.scss */
 .post h5 {
   font-size: 0.6rem;
   margin: 3vh 0;
 }
-/* line 141, ../scss/partials/_typography.scss */
+/* line 142, ../scss/partials/_typography.scss */
 .post .post-title,
 .post .post-title a {
   font-family: "jaf-facitweb", sans-serif;
   font-weight: 900;
   font-size: 2.5rem;
+  line-height: 1;
   margin: 0 0 1rem 0;
   text-transform: uppercase;
 }
-/* line 150, ../scss/partials/_typography.scss */
+/* line 152, ../scss/partials/_typography.scss */
 .post .post-meta {
   font-family: "jaf-facitweb", sans-serif;
   font-weight: 900;
   font-size: 0.7rem;
   text-transform: uppercase;
 }
-/* line 155, ../scss/partials/_typography.scss */
+/* line 157, ../scss/partials/_typography.scss */
 .post .post-meta time,
 .post .post-meta a {
   font-family: "jaf-facitweb", sans-serif;
@@ -115,7 +117,7 @@ dd {
   font-size: 0.7rem;
   text-transform: uppercase;
 }
-/* line 162, ../scss/partials/_typography.scss */
+/* line 164, ../scss/partials/_typography.scss */
 .post .post-meta span {
   font-family: "jaf-facitweb", sans-serif;
   font-weight: 900;
@@ -123,34 +125,34 @@ dd {
   font-size: 0.7rem;
   font-weight: 900;
 }
-/* line 172, ../scss/partials/_typography.scss */
+/* line 174, ../scss/partials/_typography.scss */
 .post p {
   font-family: "minion-pro", serif;
   font-weight: 400;
   color: #505050;
   margin: 1rem 0;
 }
-/* line 178, ../scss/partials/_typography.scss */
+/* line 180, ../scss/partials/_typography.scss */
 .post a {
   font-family: "minion-pro", serif;
   font-weight: 400;
   color: #0092ba;
 }
-/* line 183, ../scss/partials/_typography.scss */
+/* line 185, ../scss/partials/_typography.scss */
 .post strong {
   font-family: "minion-pro", serif;
   font-weight: 700;
   color: #505050;
   font-weight: 700;
 }
-/* line 189, ../scss/partials/_typography.scss */
+/* line 191, ../scss/partials/_typography.scss */
 .post em {
   font-family: "minion-pro", serif;
   font-weight: 400;
   color: #505050;
   text-transform: italic;
 }
-/* line 195, ../scss/partials/_typography.scss */
+/* line 197, ../scss/partials/_typography.scss */
 .post ul,
 .post ul li,
 .post ol li {
@@ -158,16 +160,16 @@ dd {
   font-weight: 400;
   color: #505050;
 }
-/* line 202, ../scss/partials/_typography.scss */
+/* line 204, ../scss/partials/_typography.scss */
 .post img {
   width: 100%;
 }
-/* line 206, ../scss/partials/_typography.scss */
+/* line 208, ../scss/partials/_typography.scss */
 .post hr {
   border: none;
   border-bottom: 1px solid #e1e1e1;
 }
-/* line 212, ../scss/partials/_typography.scss */
+/* line 214, ../scss/partials/_typography.scss */
 .post pre {
   background: #e1e1e1;
   border: 1px solid #282828;
@@ -179,13 +181,13 @@ dd {
   white-space: pre-wrap;
   width: 100%;
 }
-/* line 223, ../scss/partials/_typography.scss */
+/* line 225, ../scss/partials/_typography.scss */
 .post pre > code {
   padding: 0;
   width: 100%;
   word-wrap: break-word;
 }
-/* line 231, ../scss/partials/_typography.scss */
+/* line 233, ../scss/partials/_typography.scss */
 .post code {
   background: #e1e1e1;
   color: #282828;
@@ -194,7 +196,7 @@ dd {
   padding: 1.7vw;
   vertical-align: middle;
 }
-/* line 241, ../scss/partials/_typography.scss */
+/* line 243, ../scss/partials/_typography.scss */
 .post blockquote {
   border-left: 10px solid #e1e1e1;
   color: #505050;
@@ -203,7 +205,7 @@ dd {
 }
 
 @media screen and (min-width: 801px) {
-  /* line 266, ../scss/partials/_typography.scss */
+  /* line 268, ../scss/partials/_typography.scss */
   .post code {
     padding: .3vw;
   }
