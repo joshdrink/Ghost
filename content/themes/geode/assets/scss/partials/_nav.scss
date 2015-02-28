@@ -12,9 +12,9 @@
     background-color: $black;
     background-repeat: repeat;
     box-shadow: $shadow-bottom-01;
-    height: 90vh;
+    height: 100vh;
     position: fixed;
-    bottom: -80vh;
+    bottom: -85vh;
     transition: bottom .5s ease .6s;
     width: 100vw;
     z-index: 10;
@@ -33,7 +33,7 @@
     opacity: 0;
     padding: 0;
     position: absolute;
-    top: 5vh;
+    top: 7.5vh;
     left: 6vh;
     text-transform: uppercase;
     transform: translateY(-50%);
@@ -161,24 +161,24 @@
 @media screen and (min-width:801px) {
 
     .navigation {
-        box-shadow: $shadow-left-01;
+        box-shadow: $shadow-bottom-01;
         height: 100vh;
         top: 0;
         left: 90vw;
         bottom: 0;
         transition: box-shadow .3s ease, left .5s ease 1s;
-        width: 90vw;
+        width: 100vw;
 
         &:hover {
-            box-shadow: $shadow-left-02;
+            box-shadow: $shadow-bottom-02;
         }
 
         &.active {
-            left: 10vw;
+            left: 0;
             transition: left .5s ease;
 
             &:hover {
-                box-shadow: $shadow-left-01;
+                box-shadow: $shadow-bottom-01;
             }
 
         }
@@ -194,7 +194,7 @@
         top: auto;
         left: 5vw;
         right: auto;
-        bottom: 5rem;
+        bottom: 3rem;
         transform: translateX(-50%) rotate(-90deg);
         transition: opacity .3s ease;
 
@@ -203,6 +203,10 @@
             transition: opacity .3s ease 1.2s;
         }
 
+    }
+
+    .mobile {
+        display: none;
     }
 
     .navigation-list {
