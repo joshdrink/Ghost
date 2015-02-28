@@ -14,8 +14,8 @@
     box-shadow: $shadow-bottom-01;
     height: 100vh;
     position: fixed;
-    bottom: -85vh;
-    transition: bottom .5s ease .6s;
+    bottom: -87.5vh;
+    transition: bottom .5s ease .6s, height .3s linear;
     width: 100vw;
     z-index: 10;
 
@@ -33,7 +33,7 @@
     opacity: 0;
     padding: 0;
     position: absolute;
-    top: 7.5vh;
+    top: 6.25vh;
     left: 6vh;
     text-transform: uppercase;
     transform: translateY(-50%);
@@ -114,7 +114,7 @@
 
 .navigation-button {
     cursor: pointer;
-    height: 10vh;
+    height: 15vh;
     position: absolute;
     top: 0;
     left: 0;
@@ -164,7 +164,7 @@
         box-shadow: $shadow-bottom-01;
         height: 100vh;
         top: 0;
-        left: 90vw;
+        left: -90vw;
         bottom: 0;
         transition: box-shadow .3s ease, left .5s ease 1s;
         width: 100vw;
@@ -192,10 +192,10 @@
         padding: 0;
         position: absolute;
         top: auto;
-        left: 5vw;
-        right: auto;
+        left: auto;
+        right: 5vw;
         bottom: 3rem;
-        transform: translateX(-50%) rotate(-90deg);
+        transform: translateX(50%) rotate(-90deg);
         transition: opacity .3s ease;
 
         &.active {
@@ -215,6 +215,8 @@
 
     .navigation-button {
         height: 100vh;
+        left: auto;
+        right: 0;
         width: 10vw;
     }
 

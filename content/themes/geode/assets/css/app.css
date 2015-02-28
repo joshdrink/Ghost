@@ -252,9 +252,9 @@ body {
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
   height: 100vh;
   position: fixed;
-  bottom: -85vh;
-  -webkit-transition: bottom .5s ease .6s;
-          transition: bottom .5s ease .6s;
+  bottom: -87.5vh;
+  -webkit-transition: bottom .5s ease .6s, height .3s linear;
+          transition: bottom .5s ease .6s, height .3s linear;
   width: 100vw;
   z-index: 10;
 }
@@ -273,7 +273,7 @@ body {
   opacity: 0;
   padding: 0;
   position: absolute;
-  top: 7.5vh;
+  top: 6.25vh;
   left: 6vh;
   text-transform: uppercase;
   -webkit-transform: translateY(-50%);
@@ -351,7 +351,7 @@ body {
 /* line 115, ../scss/partials/_nav.scss */
 .navigation-button {
   cursor: pointer;
-  height: 10vh;
+  height: 15vh;
   position: absolute;
   top: 0;
   left: 0;
@@ -395,7 +395,7 @@ body {
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
     height: 100vh;
     top: 0;
-    left: 90vw;
+    left: -90vw;
     bottom: 0;
     -webkit-transition: box-shadow .3s ease, left .5s ease 1s;
             transition: box-shadow .3s ease, left .5s ease 1s;
@@ -424,12 +424,12 @@ body {
     padding: 0;
     position: absolute;
     top: auto;
-    left: 5vw;
-    right: auto;
+    left: auto;
+    right: 5vw;
     bottom: 3rem;
-    -webkit-transform: translateX(-50%) rotate(-90deg);
-        -ms-transform: translateX(-50%) rotate(-90deg);
-            transform: translateX(-50%) rotate(-90deg);
+    -webkit-transform: translateX(50%) rotate(-90deg);
+        -ms-transform: translateX(50%) rotate(-90deg);
+            transform: translateX(50%) rotate(-90deg);
     -webkit-transition: opacity .3s ease;
             transition: opacity .3s ease;
   }
@@ -453,10 +453,12 @@ body {
   /* line 216, ../scss/partials/_nav.scss */
   .navigation-button {
     height: 100vh;
+    left: auto;
+    right: 0;
     width: 10vw;
   }
 
-  /* line 221, ../scss/partials/_nav.scss */
+  /* line 223, ../scss/partials/_nav.scss */
   .navigation-close-exterior {
     height: 100vh;
     top: 0;
@@ -515,7 +517,6 @@ body {
 /* line 121, ../scss/app.scss */
 .loop-article {
   background: #fafafa;
-  border-bottom: 1px solid #e1e1e1;
   display: block;
   margin: 1rem auto;
   max-width: 30rem;
@@ -546,8 +547,14 @@ body {
   -webkit-transition: box-shadow .3s ease, border .1s ease;
           transition: box-shadow .3s ease, border .1s ease;
 }
+/* line 162, ../scss/app.scss */
+.loop-article hr {
+  position: relative;
+  left: 0;
+  width: 100vw;
+}
 
-/* line 164, ../scss/app.scss */
+/* line 170, ../scss/app.scss */
 .article {
   background: #fafafa;
   display: block;
@@ -558,39 +565,46 @@ body {
 }
 
 @media screen and (min-width: 801px) {
-  /* line 189, ../scss/app.scss */
+  /* line 195, ../scss/app.scss */
   .scene {
+    position: relative;
+    left: 10vw;
     width: 90vw;
   }
 
-  /* line 193, ../scss/app.scss */
+  /* line 201, ../scss/app.scss */
   .icon-home {
     display: block;
   }
 
-  /* line 197, ../scss/app.scss */
+  /* line 205, ../scss/app.scss */
   .loop-article {
-    margin: 1rem 20vw;
+    margin: 2rem 20vw 1rem;
     padding: 1.5rem 0;
   }
-  /* line 201, ../scss/app.scss */
+  /* line 209, ../scss/app.scss */
   .loop-article:first-of-type {
     margin: 3rem 20vw 1.5rem;
   }
-  /* line 204, ../scss/app.scss */
+  /* line 212, ../scss/app.scss */
   .loop-article:first-of-type:not(:last-of-type) {
     margin: 3rem 20vw 1rem;
   }
-  /* line 210, ../scss/app.scss */
+  /* line 218, ../scss/app.scss */
   .loop-article:last-of-type {
     margin: 3rem 20vw 3rem;
   }
-  /* line 213, ../scss/app.scss */
+  /* line 221, ../scss/app.scss */
   .loop-article:last-of-type:not(:first-of-type) {
-    margin: 1rem 20vw 3rem;
+    margin: 2rem 20vw 3rem;
+  }
+  /* line 227, ../scss/app.scss */
+  .loop-article hr {
+    left: -20vw;
+    width: 90vw;
   }
 
-  /* line 221, ../scss/app.scss */
+  /* line 234, ../scss/app.scss */
   .article {
     margin: 3rem 20vw;
     padding: 1.5rem 0;
