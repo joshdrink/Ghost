@@ -43,11 +43,11 @@
     left: 6vh;
     text-transform: uppercase;
     transform: translateY(-50%);
-    transition: opacity .3s ease;
+    transition: opacity .3s ease, top .3s ease .6s, left .3s ease .6s;
 
     &.active {
         opacity: 1;
-        transition: opacity .3s ease 1.2s;
+        transition: opacity .3s ease 1.2s, top .3s ease .6s, left .3s ease .6s;
     }
 
 }

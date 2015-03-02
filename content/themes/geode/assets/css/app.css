@@ -285,14 +285,14 @@ body {
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
-  -webkit-transition: opacity .3s ease;
-          transition: opacity .3s ease;
+  -webkit-transition: opacity .3s ease, top .3s ease .6s, left .3s ease .6s;
+          transition: opacity .3s ease, top .3s ease .6s, left .3s ease .6s;
 }
 /* line 48, ../scss/partials/_nav.scss */
 .label-navigation.active {
   opacity: 1;
-  -webkit-transition: opacity .3s ease 1.2s;
-          transition: opacity .3s ease 1.2s;
+  -webkit-transition: opacity .3s ease 1.2s, top .3s ease .6s, left .3s ease .6s;
+          transition: opacity .3s ease 1.2s, top .3s ease .6s, left .3s ease .6s;
 }
 
 /* line 55, ../scss/partials/_nav.scss */
