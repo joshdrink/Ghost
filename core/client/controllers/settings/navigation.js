@@ -4,9 +4,10 @@ var NavigationController,
 NavItem = Ember.Object.extend({
     label: '',
     url: '',
+    last: false,
 
     isComplete: Ember.computed('label', 'url', function () {
-        return !(Ember.isBlank(this.get('label')) || Ember.isBlank(this.get('url')));
+        return !(Ember.isBlank(this.get('label').trim()) || Ember.isBlank(this.get('url')));
     })
 });
 
@@ -33,13 +34,13 @@ NavigationController = Ember.Controller.extend({
 
         lastItem = navItems.get('lastObject');
         if (!lastItem || lastItem.get('isComplete')) {
-            navItems.addObject(NavItem.create());
+            navItems.addObject(NavItem.create({last: true}));
         }
 
         return navItems;
     }),
 
-    navigationItemsObserver: Ember.observer('navigationItems.[]', function () {
+    updateLastNavItem: Ember.observer('navigationItems.[]', function () {
         var navItems = this.get('navigationItems');
 
         navItems.forEach(function (item, index, items) {
@@ -57,7 +58,7 @@ NavigationController = Ember.Controller.extend({
                 lastItem = navItems.get('lastObject');
 
             if (lastItem && lastItem.get('isComplete')) {
-                navItems.addObject(NavItem.create());
+                navItems.addObject(NavItem.create({last: true})); // Adds new blank navItem
             }
         },
 
@@ -66,7 +67,17 @@ NavigationController = Ember.Controller.extend({
                 return;
             }
 
-            this.get('navigationItems').removeObject(item);
+            var navItems = this.get('navigationItems');
+
+            navItems.removeObject(item);
+        },
+
+        moveItem: function (index, newIndex) {
+            var navItems = this.get('navigationItems'),
+                item = navItems.objectAt(index);
+
+            navItems.removeAt(index);
+            navItems.insertAt(newIndex, item);
         },
 
         updateUrl: function (url, navItem) {
@@ -88,9 +99,16 @@ NavigationController = Ember.Controller.extend({
                 navSetting,
                 blogUrl = this.get('config').blogUrl,
                 blogUrlRegex = new RegExp('^' + blogUrl + '(.*)', 'i'),
+                navItems = this.get('navigationItems'),
                 match;
 
-            navSetting = this.get('navigationItems').map(function (item) {
+            // Don't save if there's a blank label.
+            if (navItems.find(function (item) { return !item.get('isComplete') && !item.get('last');})) {
+                self.notifications.showErrors(['One of your navigation items has an empty label.<br>Please enter a new label or delete the item before saving.']);
+                return;
+            }
+
+            navSetting = navItems.map(function (item) {
                 var label,
                     url;
 
@@ -101,21 +119,19 @@ NavigationController = Ember.Controller.extend({
                 label = item.get('label').trim();
                 url = item.get('url').trim();
 
+                // is this an internal URL?
                 match = url.match(blogUrlRegex);
 
                 if (match) {
-                    if (match[1] === '') {
-                        url = '/';
-                    } else {
-                        url = match[1];
+                    url = match[1];
+
+                    // if the last char is not a slash, then add one,
+                    // this also handles the empty case for the homepage
+                    if (url[url.length - 1] !== '/') {
+                        url += '/';
                     }
                 } else if (!validator.isURL(url) && url !== '' && url[0] !== '/') {
                     url = '/' + url;
-                }
-
-                // if navItem label is empty and URL is still the default, don't save
-                if (!label && url === '/') {
-                    return;
                 }
 
                 return {label: label, url: url};

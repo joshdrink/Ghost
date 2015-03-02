@@ -1,15 +1,14 @@
 import AuthenticatedRoute from 'ghost/routes/authenticated';
 import CurrentUserSettings from 'ghost/mixins/current-user-settings';
+import styleBody from 'ghost/mixins/style-body';
 
-var NavigationRoute = AuthenticatedRoute.extend(CurrentUserSettings, {
+var NavigationRoute = AuthenticatedRoute.extend(styleBody, CurrentUserSettings, {
 
     titleToken: 'Navigation',
 
-    beforeModel: function () {
-        if (!this.get('config.navigationUI')) {
-            return this.transitionTo('settings.general');
-        }
+    classNames: ['settings-view-navigation'],
 
+    beforeModel: function () {
         return this.currentUser().then(this.transitionAuthor());
     },
 

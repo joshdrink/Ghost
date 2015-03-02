@@ -37,7 +37,12 @@ function getPostPage(options) {
     });
 }
 
-function formatPageResponse(posts, page) {
+/**
+ * formats variables for handlebars in multi-post contexts.
+ * If extraValues are available, they are merged in the final value
+ * @return {Object} containing page variables
+ */
+function formatPageResponse(posts, page, extraValues) {
     // Delete email from author for frontend output
     // TODO: do this on API level if no context is available
     posts = _.each(posts, function (post) {
@@ -46,19 +51,29 @@ function formatPageResponse(posts, page) {
         }
         return post;
     });
-    return {
+    extraValues = extraValues || {};
+
+    var resp = {
         posts: posts,
         pagination: page.meta.pagination
     };
+    return _.extend(resp, extraValues);
 }
 
+/**
+ * similar to formatPageResponse, but for single post pages
+ * @return {Object} containing page variables
+ */
 function formatResponse(post) {
     // Delete email from author for frontend output
     // TODO: do this on API level if no context is available
     if (post.author) {
         delete post.author.email;
     }
-    return {post: post};
+
+    return {
+        post: post
+    };
 }
 
 function handleError(next) {
@@ -199,9 +214,8 @@ frontendControllers = {
             filters.doFilter('prePostsRender', page.posts).then(function (posts) {
                 getActiveThemePaths().then(function (paths) {
                     var view = template.getThemeViewForTag(paths, options.tag),
-
-                        // Format data for template
-                        result = _.extend(formatPageResponse(posts, page), {
+                    // Format data for template
+                        result = formatPageResponse(posts, page, {
                             tag: page.meta.filters.tags ? page.meta.filters.tags[0] : ''
                         });
 
@@ -254,9 +268,8 @@ frontendControllers = {
             filters.doFilter('prePostsRender', page.posts).then(function (posts) {
                 getActiveThemePaths().then(function (paths) {
                     var view = paths.hasOwnProperty('author.hbs') ? 'author' : 'index',
-
                         // Format data for template
-                        result = _.extend(formatPageResponse(posts, page), {
+                        result = formatPageResponse(posts, page, {
                             author: page.meta.filters.author ? page.meta.filters.author : ''
                         });
 
@@ -509,6 +522,11 @@ frontendControllers = {
                                 author: post.author ? post.author.name : null
                             },
                             htmlContent = cheerio.load(post.html, {decodeEntities: false});
+
+                        if (post.image) {
+                            htmlContent('p').first().before('<img src="' + post.image + '" />');
+                            htmlContent('img').attr('alt', post.title);
+                        }
 
                         // convert relative resource urls to absolute
                         ['href', 'src'].forEach(function (attributeName) {
