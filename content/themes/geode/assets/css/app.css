@@ -646,16 +646,20 @@ body {
     margin: 3rem 20vw 3rem;
   }
   /* line 226, ../scss/app.scss */
+  .loop-article:last-of-type hr {
+    display: none;
+  }
+  /* line 230, ../scss/app.scss */
   .loop-article:last-of-type:not(:first-of-type) {
     margin: 2rem 20vw 3rem;
   }
-  /* line 232, ../scss/app.scss */
+  /* line 236, ../scss/app.scss */
   .loop-article hr {
     left: -20vw;
     width: 90vw;
   }
 
-  /* line 239, ../scss/app.scss */
+  /* line 243, ../scss/app.scss */
   .article {
     margin: 3rem 20vw;
     padding: 1.5rem 0;
