@@ -604,8 +604,12 @@ body {
   border: none;
   border-top: 1px solid #b4b4b4;
 }
+/* line 174, ../scss/app.scss */
+.rule-loop:last-of-type {
+  display: none;
+}
 
-/* line 175, ../scss/app.scss */
+/* line 180, ../scss/app.scss */
 .article {
   background: #fafafa;
   display: block;
@@ -616,50 +620,46 @@ body {
 }
 
 @media screen and (min-width: 801px) {
-  /* line 200, ../scss/app.scss */
+  /* line 205, ../scss/app.scss */
   .scene {
     position: relative;
     left: 10vw;
     width: 90vw;
   }
 
-  /* line 206, ../scss/app.scss */
+  /* line 211, ../scss/app.scss */
   .icon-home {
     display: block;
   }
 
-  /* line 210, ../scss/app.scss */
+  /* line 215, ../scss/app.scss */
   .loop-article {
     margin: 2rem 20vw 1rem;
     padding: 1.5rem 0;
   }
-  /* line 214, ../scss/app.scss */
+  /* line 219, ../scss/app.scss */
   .loop-article:first-of-type {
     margin: 3rem 20vw 1.5rem;
   }
-  /* line 217, ../scss/app.scss */
+  /* line 222, ../scss/app.scss */
   .loop-article:first-of-type:not(:last-of-type) {
     margin: 3rem 20vw 1rem;
   }
-  /* line 223, ../scss/app.scss */
+  /* line 228, ../scss/app.scss */
   .loop-article:last-of-type {
     margin: 3rem 20vw 3rem;
   }
-  /* line 226, ../scss/app.scss */
-  .loop-article:last-of-type hr {
-    display: none;
-  }
-  /* line 230, ../scss/app.scss */
+  /* line 231, ../scss/app.scss */
   .loop-article:last-of-type:not(:first-of-type) {
     margin: 2rem 20vw 3rem;
   }
-  /* line 236, ../scss/app.scss */
+  /* line 237, ../scss/app.scss */
   .loop-article hr {
     left: -20vw;
     width: 90vw;
   }
 
-  /* line 243, ../scss/app.scss */
+  /* line 244, ../scss/app.scss */
   .article {
     margin: 3rem 20vw;
     padding: 1.5rem 0;
