@@ -1253,10 +1253,10 @@ define('ghost/templates/application', ['exports'], function(__exports__){ __expo
       dom.appendChild(el1, el2);
       var el2 = dom.createTextNode("\n    ");
       dom.appendChild(el1, el2);
-      var el2 = dom.createTextNode("\n    ");
-      dom.appendChild(el1, el2);
       var el2 = dom.createTextNode("\n");
       dom.appendChild(el1, el2);
+      dom.appendChild(el0, el1);
+      var el1 = dom.createTextNode("\n\n");
       dom.appendChild(el0, el1);
       var el1 = dom.createTextNode("\n\n");
       dom.appendChild(el0, el1);
@@ -1290,14 +1290,14 @@ define('ghost/templates/application', ['exports'], function(__exports__){ __expo
       var morph0 = dom.createMorphAt(fragment,1,2,contextualElement);
       var morph1 = dom.createMorphAt(element0,0,1);
       var morph2 = dom.createMorphAt(element0,1,2);
-      var morph3 = dom.createMorphAt(element0,2,3);
-      var morph4 = dom.createMorphAt(fragment,4,5,contextualElement);
-      var morph5 = dom.createMorphAt(fragment,5,6,contextualElement);
+      var morph3 = dom.createMorphAt(fragment,4,5,contextualElement);
+      var morph4 = dom.createMorphAt(fragment,5,6,contextualElement);
+      var morph5 = dom.createMorphAt(fragment,6,7,contextualElement);
       block(env, morph0, context, "unless", [get(env, context, "hideNav")], {}, child0, null);
       element(env, element0, context, "bind-attr", [], {"data-notification-count": get(env, context, "topNotificationCount")});
       inline(env, morph1, context, "gh-notifications", [], {"location": "top", "notify": "topNotificationChange"});
-      inline(env, morph2, context, "gh-notifications", [], {"location": "bottom"});
-      content(env, morph3, context, "outlet");
+      content(env, morph2, context, "outlet");
+      inline(env, morph3, context, "gh-notifications", [], {"location": "bottom"});
       inline(env, morph4, context, "outlet", ["modal"], {});
       inline(env, morph5, context, "outlet", ["settings-menu"], {});
       return fragment;
@@ -1748,6 +1748,55 @@ define('ghost/templates/components/gh-navitem', ['exports'], function(__exports_
       hasRendered: false,
       build: function build(dom) {
         var el0 = dom.createDocumentFragment();
+        var el1 = dom.createTextNode("    ");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("span");
+        dom.setAttribute(el1,"class","navigation-item-drag-handle icon-grab");
+        var el2 = dom.createTextNode("\n        ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("span");
+        dom.setAttribute(el2,"class","hidden");
+        var el3 = dom.createTextNode("Reorder");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n    ");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      render: function render(context, env, contextualElement) {
+        var dom = env.dom;
+        dom.detectNamespace(contextualElement);
+        var fragment;
+        if (env.useFragmentCache && dom.canClone) {
+          if (this.cachedFragment === null) {
+            fragment = this.build(dom);
+            if (this.hasRendered) {
+              this.cachedFragment = fragment;
+            } else {
+              this.hasRendered = true;
+            }
+          }
+          if (this.cachedFragment) {
+            fragment = dom.cloneNode(this.cachedFragment, true);
+          }
+        } else {
+          fragment = this.build(dom);
+        }
+        return fragment;
+      }
+    };
+  }());
+  var child1 = (function() {
+    return {
+      isHTMLBars: true,
+      blockParams: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      build: function build(dom) {
+        var el0 = dom.createDocumentFragment();
         var el1 = dom.createTextNode("        ");
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("button");
@@ -1793,7 +1842,7 @@ define('ghost/templates/components/gh-navitem', ['exports'], function(__exports_
       }
     };
   }());
-  var child1 = (function() {
+  var child2 = (function() {
     return {
       isHTMLBars: true,
       blockParams: 0,
@@ -1853,20 +1902,7 @@ define('ghost/templates/components/gh-navitem', ['exports'], function(__exports_
     hasRendered: false,
     build: function build(dom) {
       var el0 = dom.createDocumentFragment();
-      var el1 = dom.createElement("button");
-      dom.setAttribute(el1,"type","button");
-      dom.setAttribute(el1,"class","navigation-item-drag-handle icon-grab");
-      var el2 = dom.createTextNode("\n    ");
-      dom.appendChild(el1, el2);
-      var el2 = dom.createElement("span");
-      dom.setAttribute(el2,"class","hidden");
-      var el3 = dom.createTextNode("Reorder");
-      dom.appendChild(el2, el3);
-      dom.appendChild(el1, el2);
-      var el2 = dom.createTextNode("\n");
-      dom.appendChild(el1, el2);
-      dom.appendChild(el0, el1);
-      var el1 = dom.createTextNode("\n");
+      var el1 = dom.createTextNode("");
       dom.appendChild(el0, el1);
       var el1 = dom.createElement("div");
       dom.setAttribute(el1,"class","navigation-inputs");
@@ -1904,7 +1940,7 @@ define('ghost/templates/components/gh-navitem', ['exports'], function(__exports_
     },
     render: function render(context, env, contextualElement) {
       var dom = env.dom;
-      var hooks = env.hooks, get = hooks.get, inline = hooks.inline, block = hooks.block;
+      var hooks = env.hooks, get = hooks.get, block = hooks.block, inline = hooks.inline;
       dom.detectNamespace(contextualElement);
       var fragment;
       if (env.useFragmentCache && dom.canClone) {
@@ -1922,13 +1958,16 @@ define('ghost/templates/components/gh-navitem', ['exports'], function(__exports_
       } else {
         fragment = this.build(dom);
       }
-      var element2 = dom.childAt(fragment, [2]);
-      var morph0 = dom.createMorphAt(dom.childAt(element2, [1]),0,1);
-      var morph1 = dom.createMorphAt(dom.childAt(element2, [3]),0,1);
-      var morph2 = dom.createMorphAt(dom.childAt(fragment, [4]),0,-1);
-      inline(env, morph0, context, "gh-trim-focus-input", [], {"focus": get(env, context, "navItem.last"), "placeholder": "Label", "value": get(env, context, "navItem.label")});
-      inline(env, morph1, context, "gh-navitem-url-input", [], {"baseUrl": get(env, context, "baseUrl"), "url": get(env, context, "navItem.url"), "change": "updateUrl"});
-      block(env, morph2, context, "if", [get(env, context, "navItem.last")], {}, child0, child1);
+      if (this.cachedFragment) { dom.repairClonedNode(fragment,[0]); }
+      var element2 = dom.childAt(fragment, [1]);
+      var morph0 = dom.createMorphAt(fragment,0,1,contextualElement);
+      var morph1 = dom.createMorphAt(dom.childAt(element2, [1]),0,1);
+      var morph2 = dom.createMorphAt(dom.childAt(element2, [3]),0,1);
+      var morph3 = dom.createMorphAt(dom.childAt(fragment, [3]),0,-1);
+      block(env, morph0, context, "unless", [get(env, context, "navItem.last")], {}, child0, null);
+      inline(env, morph1, context, "gh-trim-focus-input", [], {"focus": get(env, context, "navItem.last"), "placeholder": "Label", "value": get(env, context, "navItem.label")});
+      inline(env, morph2, context, "gh-navitem-url-input", [], {"baseUrl": get(env, context, "baseUrl"), "url": get(env, context, "navItem.url"), "last": get(env, context, "navItem.last"), "change": "updateUrl"});
+      block(env, morph3, context, "if", [get(env, context, "navItem.last")], {}, child1, child2);
       return fragment;
     }
   };
@@ -1987,7 +2026,7 @@ define('ghost/templates/components/gh-notification', ['exports'], function(__exp
       }
       var element0 = fragment;
       var element1 = dom.childAt(element0, [3]);
-      var morph0 = dom.createUnsafeMorphAt(dom.childAt(element0, [1]),0,1);
+      var morph0 = dom.createMorphAt(dom.childAt(element0, [1]),0,1);
       element(env, element0, context, "bind-attr", [], {"class": ":js-notification typeClass"});
       content(env, morph0, context, "message.message");
       element(env, element1, context, "action", ["closeNotification"], {});
@@ -6545,7 +6584,7 @@ define('ghost/templates/reset', ['exports'], function(__exports__){ __exports__[
       element(env, element0, context, "action", ["submit"], {"on": "submit"});
       inline(env, morph0, context, "input", [], {"value": get(env, context, "newPassword"), "class": "password", "type": "password", "placeholder": "Password", "name": "newpassword", "autofocus": "autofocus"});
       inline(env, morph1, context, "input", [], {"value": get(env, context, "ne2Password"), "class": "password", "type": "password", "placeholder": "Confirm Password", "name": "ne2password"});
-      element(env, element1, context, "bind-attr", [], {"disabled": "submitButtonDisabled"});
+      element(env, element1, context, "bind-attr", [], {"disabled": "submitting"});
       return fragment;
     }
   };
@@ -8856,6 +8895,7 @@ define('ghost/templates/settings/navigation', ['exports'], function(__exports__)
       dom.appendChild(el1, el2);
       var el2 = dom.createElement("form");
       dom.setAttribute(el2,"id","settings-navigation");
+      dom.setAttribute(el2,"class","js-settings-navigation");
       dom.setAttribute(el2,"novalidate","novalidate");
       var el3 = dom.createTextNode("\n");
       dom.appendChild(el2, el3);

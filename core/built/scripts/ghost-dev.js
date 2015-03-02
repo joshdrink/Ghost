@@ -1076,7 +1076,7 @@ define("ghost/components/gh-navitem-url-input",
         }),
 
         fakePlaceholder: Ember.computed('isBaseUrl', 'hasFocus', function () {
-            return this.get('isBaseUrl') && !this.get('hasFocus');
+            return this.get('isBaseUrl') && this.get('last') && !this.get('hasFocus');
         }),
 
         isRelative: Ember.computed('value', function () {
@@ -1156,6 +1156,9 @@ define("ghost/components/gh-navitem",
     "use strict";
     var NavItemComponent = Ember.Component.extend({
         classNames: 'navigation-item',
+
+        attributeBindings: ['order:data-order'],
+        order: Ember.computed.readOnly('navItem.order'),
 
         keyPress: function (event) {
             // enter key
@@ -1600,11 +1603,12 @@ define("ghost/components/gh-trim-focus-input",
     __exports__["default"] = TrimFocusInput;
   });
 define("ghost/components/gh-upload-modal", 
-  ["ghost/components/gh-modal-dialog","ghost/assets/lib/uploader","exports"],
-  function(__dependency1__, __dependency2__, __exports__) {
+  ["ghost/components/gh-modal-dialog","ghost/assets/lib/uploader","ghost/utils/caja-sanitizers","exports"],
+  function(__dependency1__, __dependency2__, __dependency3__, __exports__) {
     "use strict";
     var ModalDialog = __dependency1__["default"];
     var upload = __dependency2__["default"];
+    var cajaSanitizers = __dependency3__["default"];
 
     var UploadModal = ModalDialog.extend({
         layoutName: 'components/gh-modal-dialog',
@@ -1612,6 +1616,16 @@ define("ghost/components/gh-upload-modal",
         didInsertElement: function () {
             this._super();
             upload.call(this.$('.js-drop-zone'), {fileStorage: this.get('config.fileStorage')});
+        },
+        keyDown: function () {
+            this.setErrorState(false);
+        },
+        setErrorState: function (state) {
+            if (state) {
+                this.$('.js-upload-url').addClass('error');
+            } else {
+                this.$('.js-upload-url').removeClass('error');
+            }
         },
         confirm: {
             reject: {
@@ -1623,15 +1637,23 @@ define("ghost/components/gh-upload-modal",
             },
             accept: {
                 buttonClass: 'btn btn-blue right',
-                text: 'Save', // The accept button texttext: 'Save'
+                text: 'Save', // The accept button text: 'Save'
                 func: function () {
-                    var imageType = 'model.' + this.get('imageType');
+                    var imageType = 'model.' + this.get('imageType'),
+                        value;
 
                     if (this.$('.js-upload-url').val()) {
-                        this.set(imageType, this.$('.js-upload-url').val());
+                        value = this.$('.js-upload-url').val();
+
+                        if (!Ember.isEmpty(value) && !cajaSanitizers.url(value)) {
+                            this.setErrorState(true);
+                            return {message: 'Image URI is not valid'};
+                        }
                     } else {
-                        this.set(imageType, this.$('.js-upload-target').attr('src'));
+                        value = this.$('.js-upload-target').attr('src');
                     }
+
+                    this.set(imageType, value);
                     return true;
                 }
             }
@@ -1642,12 +1664,17 @@ define("ghost/components/gh-upload-modal",
                 this.sendAction();
             },
             confirm: function (type) {
-                var func = this.get('confirm.' + type + '.func');
+                var result,
+                    func = this.get('confirm.' + type + '.func');
+
                 if (typeof func === 'function') {
-                    func.apply(this);
+                    result = func.apply(this);
                 }
-                this.sendAction();
-                this.sendAction('confirm' + type);
+
+                if (!result.message) {
+                    this.sendAction();
+                    this.sendAction('confirm' + type);
+                }
             }
         }
     });
@@ -2269,13 +2296,17 @@ define("ghost/controllers/modals/leave-editor",
     __exports__["default"] = LeaveEditorController;
   });
 define("ghost/controllers/modals/signin", 
-  ["ghost/controllers/signin","exports"],
+  ["ghost/mixins/validation-engine","exports"],
   function(__dependency1__, __exports__) {
     "use strict";
-    var SigninController = __dependency1__["default"];
+    var ValidationEngine = __dependency1__["default"];
 
-    __exports__["default"] = SigninController.extend({
+    __exports__["default"] = Ember.Controller.extend(SimpleAuth.AuthenticationControllerMixin, ValidationEngine, {
         needs: 'application',
+
+        authenticator: 'simple-auth-authenticator:oauth2-password-grant',
+
+        validationType: 'signin',
 
         identification: Ember.computed('session.user.email', function () {
             return this.get('session.user.email');
@@ -2288,12 +2319,31 @@ define("ghost/controllers/modals/signin",
 
                 appController.set('skipAuthSuccessHandler', true);
 
-                this._super().then(function () {
+                this._super(this.getProperties('identification', 'password')).then(function () {
                     self.send('closeModal');
                     self.notifications.showSuccess('Login successful.');
                     self.set('password', '');
+                }).catch(function () {
+                    // if authentication fails a rejected promise will be returned.
+                    // it needs to be caught so it doesn't generate an exception in the console,
+                    // but it's actually "handled" by the sessionAuthenticationFailed action handler.
                 }).finally(function () {
                     appController.set('skipAuthSuccessHandler', undefined);
+                });
+            },
+
+            validateAndAuthenticate: function () {
+                var self = this;
+
+                // Manually trigger events for input fields, ensuring legacy compatibility with
+                // browsers and password managers that don't send proper events on autofill
+                $('#login').find('input').trigger('change');
+
+                this.validate({format: false}).then(function () {
+                    self.notifications.closePassive();
+                    self.send('authenticate');
+                }).catch(function (errors) {
+                    self.notifications.showErrors(errors);
                 });
             },
 
@@ -3248,7 +3298,7 @@ define("ghost/controllers/reset",
         newPassword: '',
         ne2Password: '',
         token: '',
-        submitButtonDisabled: false,
+        submitting: false,
     
         validationType: 'reset',
     
@@ -3317,8 +3367,8 @@ define("ghost/controllers/settings",
         showTags: Ember.computed('session.user.name', function () {
             return this.get('session.user.isAuthor') ? false : true;
         }),
-        showNavigation: Ember.computed('session.user.name', 'config.navigationUI', function () {
-            return this.get('session.user.isAuthor') || this.get('session.user.isEditor') || !this.get('config.navigationUI') ? false : true;
+        showNavigation: Ember.computed('session.user.name', function () {
+            return this.get('session.user.isAuthor') || this.get('session.user.isEditor') ? false : true;
         }),
         showCodeInjection: Ember.computed('session.user.name', 'controllers.feature.codeInjectionUI', function () {
             return this.get('session.user.isAuthor') || this.get('session.user.isEditor') || !this.get('controllers.feature.codeInjectionUI') ? false : true;
@@ -3613,9 +3663,10 @@ define("ghost/controllers/settings/navigation",
     NavItem = Ember.Object.extend({
         label: '',
         url: '',
+        last: false,
 
         isComplete: Ember.computed('label', 'url', function () {
-            return !(Ember.isBlank(this.get('label')) || Ember.isBlank(this.get('url')));
+            return !(Ember.isBlank(this.get('label').trim()) || Ember.isBlank(this.get('url')));
         })
     });
 
@@ -3642,13 +3693,13 @@ define("ghost/controllers/settings/navigation",
 
             lastItem = navItems.get('lastObject');
             if (!lastItem || lastItem.get('isComplete')) {
-                navItems.addObject(NavItem.create());
+                navItems.addObject(NavItem.create({last: true}));
             }
 
             return navItems;
         }),
 
-        navigationItemsObserver: Ember.observer('navigationItems.[]', function () {
+        updateLastNavItem: Ember.observer('navigationItems.[]', function () {
             var navItems = this.get('navigationItems');
 
             navItems.forEach(function (item, index, items) {
@@ -3666,7 +3717,7 @@ define("ghost/controllers/settings/navigation",
                     lastItem = navItems.get('lastObject');
 
                 if (lastItem && lastItem.get('isComplete')) {
-                    navItems.addObject(NavItem.create());
+                    navItems.addObject(NavItem.create({last: true})); // Adds new blank navItem
                 }
             },
 
@@ -3675,7 +3726,17 @@ define("ghost/controllers/settings/navigation",
                     return;
                 }
 
-                this.get('navigationItems').removeObject(item);
+                var navItems = this.get('navigationItems');
+
+                navItems.removeObject(item);
+            },
+
+            moveItem: function (index, newIndex) {
+                var navItems = this.get('navigationItems'),
+                    item = navItems.objectAt(index);
+
+                navItems.removeAt(index);
+                navItems.insertAt(newIndex, item);
             },
 
             updateUrl: function (url, navItem) {
@@ -3697,9 +3758,16 @@ define("ghost/controllers/settings/navigation",
                     navSetting,
                     blogUrl = this.get('config').blogUrl,
                     blogUrlRegex = new RegExp('^' + blogUrl + '(.*)', 'i'),
+                    navItems = this.get('navigationItems'),
                     match;
 
-                navSetting = this.get('navigationItems').map(function (item) {
+                // Don't save if there's a blank label.
+                if (navItems.find(function (item) { return !item.get('isComplete') && !item.get('last');})) {
+                    self.notifications.showErrors(['One of your navigation items has an empty label.<br>Please enter a new label or delete the item before saving.']);
+                    return;
+                }
+
+                navSetting = navItems.map(function (item) {
                     var label,
                         url;
 
@@ -3710,21 +3778,19 @@ define("ghost/controllers/settings/navigation",
                     label = item.get('label').trim();
                     url = item.get('url').trim();
 
+                    // is this an internal URL?
                     match = url.match(blogUrlRegex);
 
                     if (match) {
-                        if (match[1] === '') {
-                            url = '/';
-                        } else {
-                            url = match[1];
+                        url = match[1];
+
+                        // if the last char is not a slash, then add one,
+                        // this also handles the empty case for the homepage
+                        if (url[url.length - 1] !== '/') {
+                            url += '/';
                         }
                     } else if (!validator.isURL(url) && url !== '' && url[0] !== '/') {
                         url = '/' + url;
-                    }
-
-                    // if navItem label is empty and URL is still the default, don't save
-                    if (!label && url === '/') {
-                        return;
                     }
 
                     return {label: label, url: url};
@@ -4224,8 +4290,9 @@ define("ghost/controllers/signin",
                     data = model.getProperties('identification', 'password');
 
                 this._super(data).catch(function () {
-                    // If simple-auth's authenticate rejects we need to catch it
-                    // to avoid an unhandled rejection exception.
+                    // if authentication fails a rejected promise will be returned.
+                    // it needs to be caught so it doesn't generate an exception in the console,
+                    // but it's actually "handled" by the sessionAuthenticationFailed action handler.
                 });
             },
 
@@ -5103,7 +5170,7 @@ define("ghost/mixins/editor-base-controller",
             if (status === 'published') {
                 message += '&nbsp;<a href="' + path + '">View ' + this.get('postOrPage') + '</a>';
             }
-            this.notifications.showSuccess(message, {delayed: delay});
+            this.notifications.showSuccess(message.htmlSafe(), {delayed: delay});
         },
 
         showErrorNotification: function (prevStatus, status, errors, delay) {
@@ -5112,7 +5179,7 @@ define("ghost/mixins/editor-base-controller",
 
             message += '<br />' + error;
 
-            this.notifications.showError(message, {delayed: delay});
+            this.notifications.showError(message.htmlSafe(), {delayed: delay});
         },
 
         shouldFocusTitle: Ember.computed.alias('model.isNew'),
@@ -6259,12 +6326,15 @@ define("ghost/mixins/validation-engine",
             // get the validator's error messages from the array.
             // normalize array members to map to strings.
             message = errors.map(function (error) {
+                var errorMessage;
                 if (typeof error === 'string') {
-                    return error;
+                    errorMessage = error;
+                } else {
+                    errorMessage = error.message;
                 }
 
-                return error.message;
-            }).join('<br />');
+                return Ember.Handlebars.Utils.escapeExpression(errorMessage);
+            }).join('<br />').htmlSafe();
         } else if (errors instanceof Error) {
             message += errors.message || '.';
         } else if (typeof errors === 'object') {
@@ -7643,21 +7713,20 @@ define("ghost/routes/settings/labs",
     __exports__["default"] = LabsRoute;
   });
 define("ghost/routes/settings/navigation", 
-  ["ghost/routes/authenticated","ghost/mixins/current-user-settings","exports"],
-  function(__dependency1__, __dependency2__, __exports__) {
+  ["ghost/routes/authenticated","ghost/mixins/current-user-settings","ghost/mixins/style-body","exports"],
+  function(__dependency1__, __dependency2__, __dependency3__, __exports__) {
     "use strict";
     var AuthenticatedRoute = __dependency1__["default"];
     var CurrentUserSettings = __dependency2__["default"];
+    var styleBody = __dependency3__["default"];
 
-    var NavigationRoute = AuthenticatedRoute.extend(CurrentUserSettings, {
+    var NavigationRoute = AuthenticatedRoute.extend(styleBody, CurrentUserSettings, {
 
         titleToken: 'Navigation',
 
-        beforeModel: function () {
-            if (!this.get('config.navigationUI')) {
-                return this.transitionTo('settings.general');
-            }
+        classNames: ['settings-view-navigation'],
 
+        beforeModel: function () {
             return this.currentUser().then(this.transitionAuthor());
         },
 
@@ -8941,8 +9010,19 @@ define("ghost/utils/notifications",
             this._super(object);
         },
         handleNotification: function (message, delayed) {
-            if (!message.status) {
-                message.status = 'passive';
+            if (typeof message.toJSON === 'function') {
+                // If this is a persistent message from the server, treat it as html safe
+                if (message.get('status') === 'persistent') {
+                    message.set('message', message.get('message').htmlSafe());
+                }
+
+                if (!message.get('status')) {
+                    message.set('status', 'passive');
+                }
+            } else {
+                if (!message.status) {
+                    message.status = 'passive';
+                }
             }
 
             if (!delayed) {
@@ -9467,43 +9547,59 @@ define("ghost/validators/user",
     __exports__["default"] = UserValidator;
   });
 define("ghost/views/application", 
-  ["ghost/utils/mobile","ghost/utils/bind","exports"],
-  function(__dependency1__, __dependency2__, __exports__) {
+  ["ghost/utils/mobile","exports"],
+  function(__dependency1__, __exports__) {
     "use strict";
     var mobileQuery = __dependency1__["default"];
-    var bind = __dependency2__["default"];
 
     var ApplicationView = Ember.View.extend({
         elementId: 'container',
 
-        setupGlobalMobileNav: function () {
+        didInsertElement: function () {
             // #### Navigating within the sidebar closes it.
             var self = this;
+
             $('body').on('click tap', '.js-nav-item', function () {
-                if (mobileQuery.matches) {
-                    self.set('controller.showGlobalMobileNav', false);
-                }
+                Ember.run(function () {
+                    if (mobileQuery.matches) {
+                        self.set('controller.showGlobalMobileNav', false);
+                    }
+                });
             });
 
             // #### Close the nav if mobile and clicking outside of the nav or not the burger toggle
             $('.js-nav-cover').on('click tap', function () {
-                var isOpen = self.get('controller.showGlobalMobileNav');
-                if (isOpen) {
-                    self.set('controller.showGlobalMobileNav', false);
-                }
+                Ember.run(function () {
+                    var isOpen = self.get('controller.showGlobalMobileNav');
+
+                    if (isOpen) {
+                        self.set('controller.showGlobalMobileNav', false);
+                    }
+                });
             });
 
-            // #### Listen to the viewport and change user-menu dropdown triangle classes accordingly
-            mobileQuery.addListener(this.swapUserMenuDropdownTriangleClasses);
-            this.swapUserMenuDropdownTriangleClasses(mobileQuery);
-        }.on('didInsertElement'),
-
-        swapUserMenuDropdownTriangleClasses: function (mq) {
-            if (mq.matches) {
-                $('.js-user-menu-dropdown-menu').removeClass('dropdown-triangle-top-right ').addClass('dropdown-triangle-bottom');
-            } else {
-                $('.js-user-menu-dropdown-menu').removeClass('dropdown-triangle-bottom').addClass('dropdown-triangle-top-right');
+            function swapUserMenuDropdownTriangleClasses(mq) {
+                if (mq.matches) {
+                    $('.js-user-menu-dropdown-menu').removeClass('dropdown-triangle-top-right ').addClass('dropdown-triangle-bottom');
+                } else {
+                    $('.js-user-menu-dropdown-menu').removeClass('dropdown-triangle-bottom').addClass('dropdown-triangle-top-right');
+                }
             }
+
+            // #### Listen to the viewport and change user-menu dropdown triangle classes accordingly
+            this.set('swapUserMenuDropdownTriangleClasses', Ember.run.bind(this, swapUserMenuDropdownTriangleClasses));
+
+            mobileQuery.addListener(this.get('swapUserMenuDropdownTriangleClasses'));
+            swapUserMenuDropdownTriangleClasses(mobileQuery);
+
+            this.set('closeGlobalMobileNavOnDesktop', Ember.run.bind(this, function closeGlobalMobileNavOnDesktop(mq) {
+                if (!mq.matches) {
+                    // Is desktop sized
+                    this.set('controller.showGlobalMobileNav', false);
+                }
+            }));
+
+            mobileQuery.addListener(this.get('closeGlobalMobileNavOnDesktop'));
         },
 
         showGlobalMobileNavObserver: function () {
@@ -9514,20 +9610,10 @@ define("ghost/views/application",
             }
         }.observes('controller.showGlobalMobileNav'),
 
-        setupCloseNavOnDesktop: function () {
-            this.set('closeGlobalMobileNavOnDesktop', bind(function closeGlobalMobileNavOnDesktop(mq) {
-                if (!mq.matches) {
-                    // Is desktop sized
-                    this.set('controller.showGlobalMobileNav', false);
-                }
-            }, this));
-
-            mobileQuery.addListener(this.closeGlobalMobileNavOnDesktop);
-        }.on('didInsertElement'),
-
-        removeCloseNavOnDesktop: function () {
-            mobileQuery.removeListener(this.closeGlobalMobileNavOnDesktop);
-        }.on('willDestroyElement'),
+        willDestroyElement: function () {
+            mobileQuery.removeListener(this.get('closeGlobalMobileNavOnDesktop'));
+            mobileQuery.removeListener(this.get('swapUserMenuDropdownTriangleClasses'));
+        },
 
         toggleSettingsMenuBodyClass: function () {
             $('body').toggleClass('settings-menu-expanded', this.get('controller.showSettingsMenu'));
@@ -10084,6 +10170,35 @@ define("ghost/views/settings/navigation",
     var BaseView = __dependency1__["default"];
 
     var SettingsNavigationView = BaseView.extend({
+
+        didInsertElement: function () {
+            var navContainer = Ember.$('.js-settings-navigation'),
+                navElements = '.navigation-item:not(.navigation-item:last-child)',
+                self = this;
+
+            navContainer.sortable({
+                handle: '.navigation-item-drag-handle',
+                items: navElements,
+
+                start: function (event, ui) {
+                    Ember.run(function () {
+                        ui.item.data('start-index', ui.item.index());
+                    });
+                },
+
+                update: function (event, ui) {
+                    Ember.run(function () {
+                        self.get('controller').send('moveItem', ui.item.data('start-index'), ui.item.index());
+                        ui.item.remove();
+                    });
+                }
+            });
+        },
+
+        willDestroyElement: function () {
+            Ember.$('.js-settings-navigation').sortable('destroy');
+        }
+
     });
 
     __exports__["default"] = SettingsNavigationView;
