@@ -124,7 +124,7 @@ $shadow-left-05: -11px 0 11px rgba(0, 0, 0, .25);
     display: block;
     // margin: 1.5rem auto;
     margin: 1rem auto;
-    max-width: 30rem;
+    // max-width: 40vw;
     // padding: 3rem;
     padding: 1rem 0;
     transition: box-shadow .3s ease, border .3s ease .3s;
@@ -182,7 +182,7 @@ $shadow-left-05: -11px 0 11px rgba(0, 0, 0, .25);
     display: block;
     // margin: 3rem auto;
     margin: 1rem auto 15vh;
-    max-width: 30rem;
+    // max-width: 40vw;
     // padding: 3rem;
     padding: 1rem 0;
     width: 85%;
@@ -213,23 +213,24 @@ $shadow-left-05: -11px 0 11px rgba(0, 0, 0, .25);
     }
 
     .loop-article {
-        margin: 2rem 20vw 1rem;
+        margin: 2rem 25vw 1rem;
+        max-width: 40vw;
         padding: 1.5rem 0;
 
         &:first-of-type {
-            margin: 3rem 20vw 1.5rem;
+            margin: 3rem 25vw 1.5rem;
 
             &:not(:last-of-type) {
-                margin: 3rem 20vw 1rem;
+                margin: 3rem 25vw 1rem;
             }
 
         }
 
         &:last-of-type {
-            margin: 3rem 20vw 3rem;
+            margin: 3rem 25vw 3rem;
 
             &:not(:first-of-type) {
-                margin: 2rem 20vw 3rem;
+                margin: 2rem 25vw 3rem;
             }
 
         }
@@ -242,7 +243,8 @@ $shadow-left-05: -11px 0 11px rgba(0, 0, 0, .25);
     }
 
     .article {
-        margin: 3rem 20vw;
+        margin: 3rem 25vw;
+        max-width: 40vw;
         padding: 1.5rem 0;
     }
 
