@@ -249,19 +249,19 @@ body {
 .wrapper-navigation {
   background-repeat: repeat;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
-  height: 100vh;
+  height: 12.5vh;
   position: fixed;
-  bottom: -87.5vh;
-  -webkit-transition: bottom .5s ease .6s, height .3s linear;
-          transition: bottom .5s ease .6s, height .3s linear;
+  bottom: 0;
+  -webkit-transition: height .5s ease .6s;
+          transition: height .5s ease .6s;
   width: 100vw;
   z-index: 10;
 }
 /* line 22, ../scss/partials/_nav.scss */
 .wrapper-navigation.active {
-  bottom: 0;
-  -webkit-transition: bottom .5s ease .6s;
-          transition: bottom .5s ease .6s;
+  height: 100vh;
+  -webkit-transition: height .5s ease .6s;
+          transition: height .5s ease .6s;
 }
 
 /* line 29, ../scss/partials/_nav.scss */
@@ -382,7 +382,7 @@ body {
   top: 0;
   left: 0;
   width: 100vw;
-  z-index: 10;
+  z-index: 30;
 }
 
 /* line 149, ../scss/partials/_nav.scss */
