@@ -8,8 +8,8 @@
 
 // Navigation ==================================================================
 
-.navigation {
-    background-color: $black;
+.wrapper-navigation {
+    // background-color: $black;
     background-repeat: repeat;
     box-shadow: $shadow-bottom-01;
     height: 100vh;
@@ -24,6 +24,12 @@
         transition: bottom .5s ease .6s;
     }
 
+}
+
+.navigation {
+    background-color: $black;
+    height: 87.5vh;
+    position: relative;
 }
 
 .label-navigation {
@@ -112,6 +118,24 @@
 
 }
 
+.navigation-overlay {
+    background: $black;
+    height: 12.5vh;
+    opacity: 1;
+    position: absolute;
+    top: 87.5vh;
+    right: 0;
+    transition: opacity .3s ease;
+    width: 100vw;
+    z-index: 10;
+
+    &.active {
+        opacity: 0;
+        transition: opacity .5s ease 1.5s;
+    }
+
+}
+
 .navigation-button {
     cursor: pointer;
     height: 15vh;
@@ -123,18 +147,27 @@
 }
 
 .navigation-close {
-    color: $white;
+    background: $black;
+    border-top: 1px solid $dark-grey;
     cursor: pointer;
     display: block;
+    height: 12.5vh;
     opacity: 0;
     position: absolute;
-    right: 10vh;
-    bottom: 10vh;
+    bottom: 0;
     transition: all .3s ease;
+    width: 100vw;
+    z-index: 20;
 
     &.active {
-        opacity: 1;
-        transition: all .3s ease 1.8s;
+        opacity: .8;
+        transition: opacity .3s ease;
+
+        &:hover {
+            opacity: .5;
+            transition: opacity .3s ease;
+        }
+
     }
 
 }
@@ -160,29 +193,24 @@
 // Tablet (Landscape)
 @media screen and (min-width:801px) {
 
-    .navigation {
-        box-shadow: $shadow-bottom-01;
+    .wrapper-navigation {
         height: 100vh;
         top: 0;
         left: -90vw;
         bottom: 0;
-        transition: box-shadow .3s ease, left .5s ease 1s;
+        transition: left .5s ease 1s;
         width: 100vw;
-
-        &:hover {
-            box-shadow: $shadow-bottom-02;
-        }
 
         &.active {
             left: 0;
-            transition: left .5s ease;
-
-            &:hover {
-                box-shadow: $shadow-bottom-01;
-            }
-
+            transition: left .5s ease .5s;
         }
 
+    }
+
+    .navigation {
+        height: 100vh;
+        width: 90vw;
     }
 
     .label-navigation {
@@ -193,10 +221,11 @@
         position: absolute;
         top: auto;
         left: auto;
-        right: 5vw;
-        bottom: 3rem;
+        right: -5vw;
+        bottom: 15vh;
         transform: translateX(50%) rotate(-90deg);
-        transition: opacity .3s ease;
+        transition: opacity 0s ease;
+        z-index: 20;
 
         &.active {
             opacity: 1;
@@ -213,17 +242,28 @@
         display: inline-block;
     }
 
+    .navigation-overlay {
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        right: -10vw;
+        width: 10vw;
+        z-index: 15;
+    }
+
     .navigation-button {
         height: 100vh;
         left: auto;
-        right: 0;
+        right: -10vw;
         width: 10vw;
+        z-index: 30;
     }
 
-    .navigation-close-exterior {
+    .navigation-close {
+        border-top: none;
+        border-left: 1px solid $dark-grey;
         height: 100vh;
-        top: 0;
-        left: -10vw;
+        right: 0;
         width: 10vw;
     }
 
