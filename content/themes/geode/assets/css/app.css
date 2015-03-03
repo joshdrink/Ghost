@@ -564,6 +564,7 @@ body {
   background: #fafafa;
   display: block;
   margin: 1rem auto;
+  max-width: 30rem;
   padding: 1rem 0;
   -webkit-transition: box-shadow .3s ease, border .3s ease .3s;
           transition: box-shadow .3s ease, border .3s ease .3s;
@@ -613,6 +614,7 @@ body {
   background: #fafafa;
   display: block;
   margin: 1rem auto 15vh;
+  max-width: 30rem;
   padding: 1rem 0;
   width: 85%;
 }
@@ -632,25 +634,24 @@ body {
 
   /* line 215, ../scss/app.scss */
   .loop-article {
-    margin: 2rem 25vw 1rem;
-    max-width: 40vw;
+    margin: 2rem 20vw 1rem;
     padding: 1.5rem 0;
   }
   /* line 220, ../scss/app.scss */
   .loop-article:first-of-type {
-    margin: 3rem 25vw 1.5rem;
+    margin: 3rem 20vw 1.5rem;
   }
   /* line 223, ../scss/app.scss */
   .loop-article:first-of-type:not(:last-of-type) {
-    margin: 3rem 25vw 1rem;
+    margin: 3rem 20vw 1rem;
   }
   /* line 229, ../scss/app.scss */
   .loop-article:last-of-type {
-    margin: 3rem 25vw 3rem;
+    margin: 3rem 20vw 3rem;
   }
   /* line 232, ../scss/app.scss */
   .loop-article:last-of-type:not(:first-of-type) {
-    margin: 2rem 25vw 3rem;
+    margin: 2rem 20vw 3rem;
   }
   /* line 238, ../scss/app.scss */
   .loop-article hr {
@@ -660,8 +661,7 @@ body {
 
   /* line 245, ../scss/app.scss */
   .article {
-    margin: 3rem 25vw;
-    max-width: 40vw;
+    margin: 3rem 20vw;
     padding: 1.5rem 0;
   }
 }
