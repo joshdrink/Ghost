@@ -38,6 +38,7 @@
 			"density": "4.0"
 		}
 	],
+	"start_url": "http:\/\/www.joshdr.ink",
 	"display": "standalone",
 	"orientation": "portrait"
 }
