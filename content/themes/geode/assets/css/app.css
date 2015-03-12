@@ -429,26 +429,36 @@ body {
   .wrapper-navigation {
     height: 100vh;
     top: 0;
-    left: -90vw;
+    right: -90vw;
     bottom: 0;
-    -webkit-transition: left .5s ease 1s;
-            transition: left .5s ease 1s;
+    -webkit-transition: right .5s ease 1s;
+            transition: right .5s ease 1s;
     width: 100vw;
   }
   /* line 204, ../scss/partials/_nav.scss */
   .wrapper-navigation.active {
-    left: 0;
-    -webkit-transition: left .5s ease .5s;
-            transition: left .5s ease .5s;
+    right: 0;
+    -webkit-transition: right .5s ease .5s;
+            transition: right .5s ease .5s;
   }
 
   /* line 211, ../scss/partials/_nav.scss */
   .navigation {
     height: 100vh;
+    left: 10vw;
     width: 90vw;
   }
 
-  /* line 216, ../scss/partials/_nav.scss */
+  /* line 217, ../scss/partials/_nav.scss */
+  .navigation-lines {
+    display: none;
+    height: 95vh;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  /* line 225, ../scss/partials/_nav.scss */
   .label-navigation {
     display: block;
     margin: 0;
@@ -456,8 +466,7 @@ body {
     padding: 0;
     position: absolute;
     top: auto;
-    left: auto;
-    right: -5vw;
+    left: -13.5vw;
     bottom: 15vh;
     -webkit-transform: translateX(50%) rotate(-90deg);
         -ms-transform: translateX(50%) rotate(-90deg);
@@ -466,48 +475,47 @@ body {
             transition: opacity 0s ease;
     z-index: 20;
   }
-  /* line 230, ../scss/partials/_nav.scss */
+  /* line 238, ../scss/partials/_nav.scss */
   .label-navigation.active {
     opacity: 1;
     -webkit-transition: opacity .3s ease 1.2s;
             transition: opacity .3s ease 1.2s;
   }
 
-  /* line 237, ../scss/partials/_nav.scss */
+  /* line 245, ../scss/partials/_nav.scss */
   .mobile {
     display: none;
   }
 
-  /* line 241, ../scss/partials/_nav.scss */
+  /* line 249, ../scss/partials/_nav.scss */
   .navigation-list {
     display: inline-block;
   }
 
-  /* line 245, ../scss/partials/_nav.scss */
+  /* line 253, ../scss/partials/_nav.scss */
   .navigation-overlay {
     height: 100vh;
     position: absolute;
     top: 0;
-    right: -10vw;
+    left: -10vw;
     width: 10vw;
     z-index: 15;
   }
 
-  /* line 254, ../scss/partials/_nav.scss */
+  /* line 262, ../scss/partials/_nav.scss */
   .navigation-button {
     height: 100vh;
-    left: auto;
-    right: -10vw;
+    left: -10vw;
     width: 10vw;
     z-index: 30;
   }
 
-  /* line 262, ../scss/partials/_nav.scss */
+  /* line 269, ../scss/partials/_nav.scss */
   .navigation-close {
     border-top: none;
-    border-left: 1px solid #505050;
+    border-right: 1px solid #505050;
     height: 100vh;
-    right: 0;
+    left: 0;
     width: 10vw;
   }
 }
@@ -623,7 +631,7 @@ body {
   /* line 205, ../scss/app.scss */
   .scene {
     position: relative;
-    left: 10vw;
+    left: 0;
     width: 90vw;
   }
 

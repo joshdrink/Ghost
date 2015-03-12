@@ -196,21 +196,30 @@
     .wrapper-navigation {
         height: 100vh;
         top: 0;
-        left: -90vw;
+        right: -90vw;
         bottom: 0;
-        transition: left .5s ease 1s;
+        transition: right .5s ease 1s;
         width: 100vw;
 
         &.active {
-            left: 0;
-            transition: left .5s ease .5s;
+            right: 0;
+            transition: right .5s ease .5s;
         }
 
     }
 
     .navigation {
         height: 100vh;
+        left: 10vw;
         width: 90vw;
+    }
+
+    .navigation-lines {
+        display: none;
+        height: 95vh;
+        position: absolute;
+        left: 0;
+        bottom: 0;
     }
 
     .label-navigation {
@@ -220,8 +229,7 @@
         padding: 0;
         position: absolute;
         top: auto;
-        left: auto;
-        right: -5vw;
+        left: -13.5vw;
         bottom: 15vh;
         transform: translateX(50%) rotate(-90deg);
         transition: opacity 0s ease;
@@ -246,24 +254,23 @@
         height: 100vh;
         position: absolute;
         top: 0;
-        right: -10vw;
+        left: -10vw;
         width: 10vw;
         z-index: 15;
     }
 
     .navigation-button {
         height: 100vh;
-        left: auto;
-        right: -10vw;
+        left: -10vw;
         width: 10vw;
         z-index: 30;
     }
 
     .navigation-close {
         border-top: none;
-        border-left: 1px solid $dark-grey;
+        border-right: 1px solid $dark-grey;
         height: 100vh;
-        right: 0;
+        left: 0;
         width: 10vw;
     }
 
